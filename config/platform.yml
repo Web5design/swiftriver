@@ -3,19 +3,19 @@ development:
     url: http://localhost:3008
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
-    tag: inaug09
+    tag: votereport
     
 test:
     name: InaugurationTest
     url: http://localhost:3008
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
-    tag: inaug09
+    tag: votereport
 
 production:
     name: InaugurationReport
     url: http://inaugurationreport.com
     iphone_url: http://iphone.inaugurationreport.com
     audio_url: http://calls.inaugurationreport.com
-    tag: inaug09
+    tag: votereport
 

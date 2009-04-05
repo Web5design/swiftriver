@@ -15,7 +15,7 @@ class Twitterchive
     @entries = []
   end
   def fetch
-    next_url = "http://search.twitter.com/search.atom?tag=#{@tag}&lang=all&rpp=50&#{@additional_params}"
+    next_url = "http://search.twitter.com/search.atom?q=#{@tag}&lang=all&rpp=50&#{@additional_params}"
     while (next_url)
       begin
         puts next_url
