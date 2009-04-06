@@ -77,11 +77,14 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
   
-  config.gem 'mislav-will_paginate', :version => '~> 2.3.2', :lib => 'will_paginate', :source => 'http://gems.github.com'
-  config.gem 'json', :version => '= 1.1.3'
-  config.gem 'GeoRuby', :lib => 'geo_ruby', :version => '>= 1.3.3'
-  config.gem 'haml', :version => ">= 2.0.4"
+  # config.gem 'mislav-will_paginate', :version => '~> 2.3.2', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  # config.gem 'json', :version => '= 1.1.3'
+  # config.gem 'GeoRuby', :lib => 'geo_ruby', :version => '>= 1.3.3'
+  # config.gem 'haml', :version => ">= 2.0.4"
 end
-
+require "will_paginate"
+require "json"
+require "geo_ruby"
+require "haml"
 ENV['TZ'] = 'UTC'
 

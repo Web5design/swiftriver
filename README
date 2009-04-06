@@ -42,6 +42,10 @@ You will need to add GitHub as a gem sources for will_paginate:
 $ gem sources -a http://gems.github.com
 $ gem install mislav-will_paginate
 
+For daemons:
+
+$ gem install daemons
+
 --
 LICENSE
 Made available under the MIT License.
