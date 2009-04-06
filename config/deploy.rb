@@ -11,17 +11,16 @@ set :user,  "root"
 set :use_sudo, false
 set :runner, nil
 # set :group, "wheel"
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2-ushahidi", "id-ushahidi")]
 ssh_options[:compression] = false
 
 set :application, "swiftriver"
 set :keep_releases, 3
 
-role :app, "ec2-174-129-89-242.compute-1.amazonaws.com"
-role :web, "ec2-174-129-89-242.compute-1.amazonaws.com"
-# role :daemons, "ec2-174-129-89-242.compute-1.amazonaws.com"
+role :app, "votereport.in"
+role :web, "votereport.in"
+role :daemons, "votereport.in"
 #role :voip, "voip.votereport.us"
-role :db, "ec2-174-129-89-242.compute-1.amazonaws.com", :primary=>true
+role :db, "votereport.in", :primary=>true
 
 set :deploy_to, "/var/rails/#{application}"
 

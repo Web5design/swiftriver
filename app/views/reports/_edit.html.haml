@@ -1,7 +1,7 @@
-%table[report]
+%table{:id => "report_#{report.id}"}
   %tbody
     %tr
-      %td.image= image_tag(report.reporter.icon, :class => "profile")
+      %td.image= image_tag(report.reporter.icon || "", :class => "profile")
       %td.author
         %span{ :class => "author vcard"}
           =h report.reporter.name
@@ -18,19 +18,19 @@
           = error_messages_for :report
         - remote_form_for :report, :url => report_path(report), :html => {:method => :put} do |f|
           %div
-            - if report.has_audio? and (report.source == 'TEL' or report.source == 'IPH')
+            - if report.is_a?(AudioReport) and (report.source == 'TEL' or report.source == 'IPH')
               Listen to this audio report:
               = audio_link(report)
               %br
               %label Transcribe audio here:
               = text_field_tag 'transcription', 'transcribe audio here', {:id => "report_#{report.id}_transcription", :onfocus => "$('report_#{report.id}_transcription').value = '';"}
             - else
-              = report.text
+              = report.body
           %div
             %label Wait
-            = f.text_field :wait_time, :size => 3
+            = f.text_field :tags, :size => 3
             %label Tags
-            = text_field_with_auto_complete( :report, :tag_s, {:size => 32}, { :indicator => "report_#{report.id}_tag_s_spinner", :frequency => 0.4, :tokens => [' ',','] }, report.id)
+            = text_field_with_auto_complete( :report, :tags, {:size => 32}, { :indicator => "report_#{report.id}_tag_s_spinner", :frequency => 0.4, :tokens => [' ',','] }, report.id)
             = image_tag 'spinner.gif', :id => "report_#{report.id}_tag_s_spinner", :style => 'display:none;'
           %div
             %label Location

@@ -29,7 +29,10 @@ function jsonp_mapping(url,callback, query)
 
 // Adds a semi-opaque gray overlay on the map to make the markers pop out more
 function fadeMap() {
-    mapstraction.getMap().addOverlay(new GPolygon([new GLatLng(20,180.000001),new GLatLng(70,180.000001),new GLatLng(70,330),new GLatLng(-20,330)],null,0,0,"#d0d0d0",0.4));
+    mapstraction.getMap().addOverlay(new GPolygon([new GLatLng(-85,180.000001),new GLatLng(85,180.000001),new GLatLng(85,330),new GLatLng(-85,330)],null,0,0,"#d0d0d0",0.4));
+    mapstraction.getMap().addOverlay(new GPolygon([new GLatLng(-85,0.000001),new GLatLng(85,0.000001),new GLatLng(85,330),new GLatLng(-85,330)],null,0,0,"#d0d0d0",0.4));
+    mapstraction.getMap().addOverlay(new GPolygon([new GLatLng(-85,0.000001),new GLatLng(85,0.000001),new GLatLng(85,180),new GLatLng(-85,180)],null,0,0,"#d0d0d0",0.4));
+    // mapstraction.getMap().addOverlay(new GPolygon([new GLatLng(20,180.000001),new GLatLng(70,180.000001),new GLatLng(70,330),new GLatLng(-20,330)],null,0,0,"#d0d0d0",0.4));
 }
 map_initialized = false;
 function initMapJS(url,map_filters){

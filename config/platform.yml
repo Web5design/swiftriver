@@ -1,21 +1,21 @@
 development:
-    name: InaugurationDev
+    name: VoteReport.in
     url: http://localhost:3008
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
     tag: votereport
     
 test:
-    name: InaugurationTest
+    name: VoteReport.in
     url: http://localhost:3008
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
     tag: votereport
 
 production:
-    name: InaugurationReport
-    url: http://inaugurationreport.com
-    iphone_url: http://iphone.inaugurationreport.com
-    audio_url: http://calls.inaugurationreport.com
+    name: VoteReport.in
+    url: http://votereport.in
+    iphone_url: http://iphone.votereport.in
+    audio_url: http://calls.votereport.in
     tag: votereport
 
