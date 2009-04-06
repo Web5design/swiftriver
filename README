@@ -35,7 +35,12 @@ Email
 --
 INSTALL
 
+Required gems: fastthread json GeoRuby haml
 
+You will need to add GitHub as a gem sources for will_paginate:
+
+$ gem sources -a http://gems.github.com
+$ gem install mislav-will_paginate
 
 --
 LICENSE

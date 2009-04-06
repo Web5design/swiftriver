@@ -13,7 +13,7 @@ set :runner, nil
 # set :group, "wheel"
 ssh_options[:compression] = false
 
-set :application, "swiftriver"
+set :application, "swift"
 set :keep_releases, 3
 
 role :app, "votereport.in"

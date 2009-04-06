@@ -55,5 +55,7 @@ class FlickrPoller
   end
 end
 
-FlickrPoller.new("inaug09,dctrip,dctrip09")
+platform = YAML.load(open(File.dirname(__FILE__) + "/../../config/platform.yml"))
+tags = platform[ENV["RAILS_ENV"]]["tags"]
+FlickrPoller.new(tags)
 

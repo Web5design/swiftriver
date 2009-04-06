@@ -60,6 +60,7 @@ class YoutubePoller
   end
   
 end
-
-YoutubePoller.new("inaug09|dctrip09")
+platform = YAML.load(open(File.dirname(__FILE__) + "/../../config/platform.yml"))
+tags = platform[ENV["RAILS_ENV"]]["tags"].gsub(/,/,"|")
+YoutubePoller.new(tags)
 

@@ -18,7 +18,7 @@ end
 
 while($running) do
   # tweets = JSON.parse(open(FEED).read)
-  tags = platform[ENV["RAILS_ENV"]]["tag"].gsub(/,/," OR ")
+  tags = platform[ENV["RAILS_ENV"]]["tags"].gsub(/,/," OR ")
   tag_archive = Twitterchive.new(tags)
   tag_archive.fetch
   puts "Processing #{tag_archive.entries.length} entries"
