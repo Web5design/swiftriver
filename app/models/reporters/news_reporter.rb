@@ -1,7 +1,7 @@
-class FeedReporter < Reporter
+class NewsReporter < Reporter
 
-  def source_name; "Feed"; end
-  def source; "Feed"; end
+  def source_name; "News"; end
+  def source; "News"; end
   def icon; "/images/youtube_icon.png"; end
   def display_name; name || screen_name; end
 end

@@ -17,7 +17,7 @@ class FeedPoller
       u_attrs = { 'uniqueid' => feed_id,
         'screen_name' => feed_id,
         'name' => feed['name']}
-      @feeds[feed_id]["reporter"] = FeedReporter.update_or_create(u_attrs)
+      @feeds[feed_id]["reporter"] = NewsReporter.update_or_create(u_attrs)
     end
     @running = true
     Signal.trap("TERM") { @running = false }
