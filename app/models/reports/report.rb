@@ -110,29 +110,29 @@ class Report < ActiveRecord::Base
       return reporter.reports.find_with_filters(filters) if reporter
     end
     
-    conditions = ["",filters]
+    where = "1=1"
     if filters.include?(:dtstart) && !filters[:dtstart].blank?
-      conditions[0] << "created_at >= :dtstart"
+      where << " AND created_at >= :dtstart "
     end
-    filters[:dtend] = '2009-1-27' if filters[:dtend].blank?
+    # filters[:dtend] = '2009-1-27' if filters[:dtend].blank?
     if filters.include?(:dtend) && !filters[:dtend].blank?
-      conditions[0] << "created_at <= :dtend"
+      where << " AND created_at <= :dtend "
     end
     if filters.include?(:score) && !filters[:score].blank?
-      conditions[0] << "score IS NOT NULL AND score <= :score"
+      where << " AND score IS NOT NULL AND score <= :score"
     end
     if filters.include?(:type) && !filters[:type].blank?
       filters[:type] = "#{filters[:type].capitalize}Report" unless filters[:type].match(/Report/)
-      conditions[0] << "type = :type"
+      where << " AND type = :type "
     end
     if filters.include?(:q) && !filters[:q].blank?
-      conditions[0] << "body LIKE :q"
+      where << " AND body LIKE :q "
       filters[:q] = "%#{filters[:q]}%"
     end
-    
+  
     Report.paginate( :page => filters[:page] || 1, :per_page => filters[:per_page] || 10, 
       :order => 'reports.created_at DESC',
-      :conditions => conditions,
+      :conditions => [where,filters],
       :include => [:location, :reporter])
   end
 
