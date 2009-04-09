@@ -4,21 +4,20 @@ development:
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
     tag: votereport
-    tags: votereport,indiavotes09,iv09
-    
+    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09
+        
 test:
     name: VoteReport.in
     url: http://localhost:3008
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
     tag: votereport
-    tags: votereport,indiavotes09,iv09
-
+    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09
+    
 production:
     name: VoteReport.in
     url: http://votereport.in
     iphone_url: http://iphone.votereport.in
     audio_url: http://calls.votereport.in
     tag: votereport
-    tags: votereport,indiavotes09,iv09
-
+    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09
