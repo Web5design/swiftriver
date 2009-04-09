@@ -2,9 +2,16 @@
 googlenewselection:
   name: Google News Election
   url: http://news.google.com/news?ned=in&hl=en&topic=p&output=rss
+  type: news
 msnindiaelection:
   name: MSN India Election
   url: http://news.in.msn.com/rss/elections2009.aspx
+  type: news
 ibnpolitics:
   name: IBN Politics
   url: http://ibnlive.in.com/xml/rss/ibnpolitics.xml
+  type: news
+googlevideoindia:
+  name: Google Video - India Election
+  url: http://video.google.com/videosearch?q=india+AND+election&hl=en&emb=0&st=week&client=firefox-a&output=rss
+  type: youtube
