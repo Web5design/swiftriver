@@ -22,4 +22,4 @@ config.action_controller.perform_caching             = true
 
 IMAGEMAGICK_CONVERT = "/usr/bin/convert"
 AUDIO_UPLOAD_PATH = "/home/inaugreport/files"
-GMAPS_API_KEY = "ABQIAAAAS-9BXlmhAxzk5tMQ6009tBSTo-lUxtlWjZQHujg8wiGCGX5h0hQO6yJj9_XWBlUBJq28dmQiypmbCg"
+GMAPS_API_KEY = "ABQIAAAAYfI_xw3MwUbmAScWsa72VBSuFsnH5PDWXdyJdiGQQuj4PM3yfxSgAwoD6hakNi0aLgvp20ewE9F4WA"
