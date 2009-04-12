@@ -22,4 +22,10 @@ config.action_controller.perform_caching             = true
 
 IMAGEMAGICK_CONVERT = "/usr/bin/convert"
 AUDIO_UPLOAD_PATH = "/home/inaugreport/files"
-GMAPS_API_KEY = "ABQIAAAAYfI_xw3MwUbmAScWsa72VBSuFsnH5PDWXdyJdiGQQuj4PM3yfxSgAwoD6hakNi0aLgvp20ewE9F4WA"
+
+
+GMAPS_API_KEY = case SERVER_URL
+  when /votereport\.in/
+    "ABQIAAAAYfI_xw3MwUbmAScWsa72VBSuFsnH5PDWXdyJdiGQQuj4PM3yfxSgAwoD6hakNi0aLgvp20ewE9F4WA"
+  end
+  

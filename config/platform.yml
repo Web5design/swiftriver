@@ -4,7 +4,7 @@ development:
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
     tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09
+    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
         
 test:
     name: VoteReport.in
@@ -12,7 +12,7 @@ test:
     iphone_url: http://localhost:3008
     audio_url: http://calls.inaugurationreport.com
     tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09
+    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
     
 production:
     name: VoteReport.in
@@ -20,4 +20,4 @@ production:
     iphone_url: http://iphone.votereport.in
     audio_url: http://calls.votereport.in
     tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09
+    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
