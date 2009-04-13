@@ -24,9 +24,12 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom",
       xml.updated report.updated_at.strftime("%Y-%m-%dT%H:%M:%SZ") unless report.updated_at.nil?
       xml.author  { xml.name report.reporter.name }
       xml.summary report.body unless report.body.nil?
-      %w{score type}.each do |attribute|
-        xml.tag! "category", :term => "#{attribute}=#{report.send(attribute.to_sym)}"
-      end
+      # %w{score type}.each do |attribute|
+      #   xml.tag! "category", :term => "#{attribute}=#{report.send(attribute.to_sym)}"
+      # end
+      xml.category :scheme => reports_url, :term => report.type.to_s, :label => "Report type: #{report.type.to_s}"
+      xml.category :scheme => reports_url, :term => report.source.to_s, :label => "Source: #{report.type.to_s}"
+      xml.category :scheme => reports_url, :term => report.reporter.type.to_s, :label => "Reporter type: #{report.reporter.type.to_s}"
       xml << report.location.point.as_georss unless report.location.nil?
       xml.content :type => "html" do
         xml.text! CGI::unescapeHTML(%Q{<div id="#{ dom_id(report) }" class="balloon">
