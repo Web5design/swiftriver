@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     
     @filters = {:page => @page, :per_page => @per_page}
     @state = params[:state] unless params[:state].blank?
-    [:q, :type, :name, :dtstart, :dtend, :score, :filter, :zip, :postal, :city, :state].each do |p|
+    [:q, :type, :name, :dtstart, :dtend, :score, :filter, :zip, :postal, :city, :state, :reporter].each do |p|
       @filters[p] = params[p] if params[p]
     end
   end

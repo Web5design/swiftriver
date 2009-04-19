@@ -129,6 +129,10 @@ class Report < ActiveRecord::Base
       where << " AND body LIKE :q "
       filters[:q] = "%#{filters[:q]}%"
     end
+    if filters.include?(:reporter) && !filters[:reporter].blank?
+      where << " AND reporter.type = :reporter "
+      filters[:q] = "%#{filters[:reporter]}%"
+    end
   
     Report.paginate( :page => filters[:page] || 1, :per_page => filters[:per_page] || 10, 
       :order => 'reports.created_at DESC',
