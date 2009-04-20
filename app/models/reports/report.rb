@@ -1,4 +1,5 @@
 class Report < ActiveRecord::Base
+	acts_as_solr
 	
   validates_presence_of :reporter_id
   validates_uniqueness_of :uniqueid, :scope => :source, :allow_blank => true, :message => 'already processed'
@@ -219,8 +220,13 @@ class Report < ActiveRecord::Base
       LOCATION_PATTERNS.find { |p| self.body[p] }
       self.location = Location.geocode($1) if $1
     end
+    unless self.location
+      locations = Location.find(:all).inject({}){|a,l| a[l.locality] = a}
+      localities = locations.collect{|name,l| body.scan(name).length > 0 ? l : nil}.compact
+      self.location = localities.first
+    end
     self.reporter.update_attributes(:location_id => self.location_id) if self.location
-    true
+    self.location ? true : false
   end
     
   # What location filters apply to this report?  US, MD, etc?
