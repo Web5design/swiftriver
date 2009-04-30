@@ -86,5 +86,7 @@ require "will_paginate"
 require "json"
 require "geo_ruby"
 require "haml"
+require "calais"
+CALAIS_LICENSE = "w7m26kvqdg37bdweph42n9vx"
 ENV['TZ'] = 'UTC'
 

@@ -231,10 +231,19 @@ class Report < ActiveRecord::Base
     
   # What location filters apply to this report?  US, MD, etc?
   def assign_filters
+    unless self.body.blank?
+      begin
+      calais = Calais.process_document(:content => self.body, 
+        :content_type => :text, :license_id => CALAIS_LICENSE)
+      self.location = Location.geocode(calais.geographies.first.name, calais.geographies.first) unless calais.geographies.blank?
+    rescue
+    end
+    end
     if self.location_id && self.location.filter_list
 			values = self.location.filter_list.split(',').map { |f| "(#{f},#{self.id})" }.join(',')
       self.connection.execute("INSERT DELAYED INTO report_filters (filter_id,report_id) VALUES #{values}") if !values.blank?
 		end
+		
 		true
   end
   

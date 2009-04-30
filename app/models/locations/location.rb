@@ -7,9 +7,9 @@ class Location < ActiveRecord::Base
   has_many :reports
   #validate that point really does not exist on create; we are already sort of doing this
 
-  def self.geocode(location_text)
+  def self.geocode(location_text, location = [])
     return nil if location_text.blank?
-    Timeout.timeout(20) { LocationAlias.locate(location_text) }
+    Timeout.timeout(20) { LocationAlias.locate(location_text, location) }
   rescue Timeout::Error => e
     return nil
   end
