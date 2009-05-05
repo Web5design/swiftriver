@@ -1,1 +1,6 @@
 %tr[report]= render :partial => 'reports/report_review', :locals => { :report => report }
+
+= link_to_remote content_tag(:span, 'Adjust'), { :url => edit_report_path(report), :method => :get }, :id => "report_#{report.id}", :class => "button"
+= link_to_remote content_tag(:span, 'Dismiss'), { :url => dismiss_report_path(report), :method => :post }, :id => "report_#{report.id}", :class => "button"
+= link_to_remote content_tag(:span, 'Confirm'), { :url => confirm_report_path(report), :method => :post }, :id => "report_#{report.id}", :class => "button"
+= link_to_remote content_tag(:span, 'Mark as chatter'), { :with => "'report[is_chatter]=1'", :url => dismiss_report_path(report), :method => :post }, :id => "report_#{report.id}", :class => "button"

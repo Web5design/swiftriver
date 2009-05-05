@@ -44,7 +44,8 @@ class ReportsController < ApplicationController
   # GET /reports/review
   def review
     # fetches basic review layout
-    @reports = Report.assigned(current_user)
+    # @reports = Report.assigned(current_user)
+    @reports = params[:ids].blank? ? Report.find( :all, :limit => 10) : Report.find( params[:ids].split(","))
     render :layout => "admin"
   end
   

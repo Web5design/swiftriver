@@ -7,17 +7,7 @@
 = render :partial => 'reviewer_alert', :collection => current_user.unviewed_alerts
 
 %div#maincontent.span-10
-
-  %div.span-10#tags
-    %ul#tags
-      %li#organization BJP political party
-      %li#person Sonya Ghandi
-      %li#place Chennai
-
-  %img#left_arrow{:src=>"/images/arrow_l.gif"}
-  %span#caps reported 42 minutes ago from cnn.com
-
-  %h2 Mulayam slams BSP, BJP over Varun Gandhi issue
+  =render :partial => "report_review", :locals => {:report => @reports.first}
 
 %div#sidebar.push-1.span-10.last.container
   %hr#space
@@ -67,7 +57,7 @@
           %td 
             %label{:for=>"place"} Place:
           %td 
-            %input.text#place{:type=>"text", :name=>"place", :value=>"city, region, landmark"}
+            %input.text#place{:type=>"text", :name=>"place", :value=>""}
           %td 
             %input{ :type=>"submit", :value=>"+"}
         %tr.violations
