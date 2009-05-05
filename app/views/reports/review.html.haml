@@ -5,16 +5,92 @@
   = javascript_tag "var reviewer_timeout;"  # used to reset the reviewer's timeclock for the batch of reports
 
 = render :partial => 'reviewer_alert', :collection => current_user.unviewed_alerts
-  
-%h1 Review Interface
 
-%p.clear
-  = link_to_remote content_tag(:span,"Get More Reports"), |
-    { :url => assign_reports_path, :method => :post,  :after => "startReviewerClock();"}, :class => "button" |
-    
-%table
-  %tr
-    %td{:style => "width: 800px", :valign => "top"}
-      #reports
-    %td{:style => "width: 250px", :valign => "top"}
-      = render :partial => "reviewer_sidebar"
+%div#maincontent.span-10
+
+  %div.span-10#tags
+    %ul#tags
+      %li#organization BJP political party
+      %li#person Sonya Ghandi
+      %li#place Chennai
+
+  %img#left_arrow{:src=>"/images/arrow_l.gif"}
+  %span#caps reported 42 minutes ago from cnn.com
+
+  %h2 Mulayam slams BSP, BJP over Varun Gandhi issue
+
+%div#sidebar.push-1.span-10.last.container
+  %hr#space
+  %h2 Add tags to this report:
+  %form#main_form{:method=>"post"}
+    %fieldset.span-9
+      %legend
+      %table
+        %tr.rating
+          %td
+            %label.importance Importance:
+          %td
+            %input{:type=>"radio", :name=>"importance"}
+            %img{:src=>"/stylesheets/blueprint/plugins/buttons/icons/tick.png"} Important
+            %br
+            %input{:type=>"radio", :name=>"importance"}
+            %img{:src=>"/stylesheets/blueprint/plugins/buttons/icons/cross.png"} Spam
+          %td
+            %input{:type=>"submit", :value=>"+"}
+        %tr.mood
+          %td
+            %label Mood:
+          %td
+            %input{:type=>"checkbox", :name=>"good"}
+            %span.smiley :)
+            %input{:type=>"checkbox",:name=>"normal"}
+            %span.smiley :|
+            %input{:type=>"checkbox",:name=>"bad"}
+            %span.smiley :(
+          %td
+            %input{:type=>"submit", :value=>"+"}
+        %tr.person
+          %td
+            %label{:for=>"person"} Person
+          %td     
+            %input#person.text{:type=>"text",:name=>"person",:value=>"Firstname Lastname"}
+          %td     
+            %input{:type=>"submit", :value=>"+"}
+        %tr.organization
+          %td 
+            %label{:for=>"organization"} Organization:
+          %td    
+            %input.text#organization{:type=>"text", :name=>"organization",:value=>"Organization Name"}
+          %td    
+            %input{:type=>"submit",:value=>"+"}
+        %tr.place
+          %td 
+            %label{:for=>"place"} Place:
+          %td 
+            %input.text#place{:type=>"text", :name=>"place", :value=>"city, region, landmark"}
+          %td 
+            %input{ :type=>"submit", :value=>"+"}
+        %tr.violations
+          %td
+            %label.violations Reports Violations of Electoral Code:
+          %td
+            %select
+              %option Forged Vote
+              %option Violence
+              %option Voter Bribing
+              %option Voting Machine Problems
+              %option Inflammatory Speech
+              %option Voter Name Missing
+          %td
+            %input{ :type=>"submit", :value=>"+"}
+        %tr.notes
+          %td
+            %label{:for=>"notes"} Notes:
+          %td
+            %textarea.text#tags{:name=>"tags",:value=>"type anything here"}
+          %td
+            %input{ :type=>"submit", :value=>"+"}
+      %h3
+        %a{:href=>"next"} Save and go to Next Report
+      %h5 
+        %a{:href=>"skip"} (Skip)

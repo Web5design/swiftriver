@@ -16,11 +16,10 @@ ssh_options[:compression] = false
 set :application, "swift"
 set :keep_releases, 3
 
-role :app, "votereport.in"
-role :web, "votereport.in"
-role :daemons, "votereport.in"
-#role :voip, "voip.votereport.us"
-role :db, "votereport.in", :primary=>true
+role :app, "swiftapp.org"
+role :web, "swiftapp.org"
+role :daemons, "swiftapp.org"
+role :db, "swiftapp.org", :primary=>true
 
 set :deploy_to, "/var/rails/#{application}"
 

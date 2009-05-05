@@ -35,7 +35,7 @@ Email
 --
 INSTALL
 
-Required gems: fastthread json GeoRuby haml
+Required gems: fastthread json GeoRuby haml calais libxml-ruby curb
 
 You will need to add GitHub as a gem sources for will_paginate:
 
