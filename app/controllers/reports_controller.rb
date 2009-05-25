@@ -45,7 +45,9 @@ class ReportsController < ApplicationController
   def review
     # fetches basic review layout
     # @reports = Report.assigned(current_user)
-    @reports = params[:ids].blank? ? Report.find( :all, :limit => 10) : Report.find( params[:ids].split(","))
+    options = {:limit => 1}
+    
+    @reports = ((params[:id].blank? || params[:id] =~ /next/) ? Report.unassigned(:limit => 1) : Report.unassigned(:conditions => ["id IN (?)", params[:id].split(",")])).assign(current_user)
     render :layout => "admin"
   end
   
@@ -113,6 +115,7 @@ class ReportsController < ApplicationController
     
     if @report.update_attributes(params[:report])
       respond_to do |format|
+        format.html { review }
         format.xml { head :ok }
         format.js {
           render :update do |page|

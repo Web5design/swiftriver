@@ -38,12 +38,12 @@ ActionController::Routing::Routes.draw do |map|
       :map => :get, 
       :stats => :get, 
       :chart => :get, 
-      :review => :get,
       :reload => :get, 
       :assign => :post, 
       :release => :post
     },
     :member => {
+      :review => :get,
       :confirm => :post,
       :dismiss => :post
     }

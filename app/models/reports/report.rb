@@ -29,11 +29,14 @@ class Report < ActiveRecord::Base
       :order => 'reports.created_at DESC' }
   }
   # @reports = Report.unassigned.assign(@current_user) &tc...
-  named_scope( :unassigned, 
-    :limit => 10, 
-    :order => 'reports.created_at DESC',
-    :conditions => 'reviewed_at IS NULL AND (reviewer_id IS NULL OR assigned_at < UTC_TIMESTAMP - INTERVAL 10 MINUTE)' 
-  ) do
+  named_scope( :unassigned, lambda { |options|
+    options ||= {}
+    unreviewed = 'reviewed_at IS NULL AND (reviewer_id IS NULL OR assigned_at < UTC_TIMESTAMP - INTERVAL 10 MINUTE)'
+    options.include?(:conditions) ? options[:conditions][0] << " AND #{unreviewed}" : options[:conditions] = unreviewed
+    
+    { :limit => 10, 
+     :order => 'reports.created_at DESC' }.merge(options)
+  }) do
     def assign(reviewer)
       # FIXME: can't we do this more efficiently? a la p-code:
       # self.update_all(reviewer_id=reviewer.id, assigned_at => time.now where id IN (each.collect{r.id}))

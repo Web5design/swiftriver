@@ -20,7 +20,7 @@
   <div id="meta-header">
     <% if logged_in? -%>
     <h2><%= APP_NAME %> > <%= current_user.name %>'s sweeper page</h2>	
-    <h2 class="right"><%= link_to "Review reports", review_reports_path %></h2>
+    <h2 class="right"><%= link_to "Review reports", "/reports/review" %></h2>
     <h2 class="right"><%= link_to "Log out", logout_path, { :title => "Log out" } %></h2>
     <!-- <h2 class="right">1 reports reviewed with 3 tags used so far</h2>
       <h2 class="right">1,321 reports need to be reviewed</h2>     -->

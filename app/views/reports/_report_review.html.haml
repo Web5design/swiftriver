@@ -22,6 +22,7 @@
   - if report.is_a?(AudioReport)
     Listen to this audio report:
     = audio_link(report)
+  = report.id
 
 %span
   =image_tag(report.reporter.icon || "", :class => "profile")

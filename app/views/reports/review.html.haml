@@ -12,7 +12,7 @@
 %div#sidebar.push-1.span-10.last.container
   %hr#space
   %h2 Add tags to this report:
-  %form#main_form{:method=>"post"}
+  %form#main_form{:method=>"put",:action=>"/reports/#{@reports.first.id}"}
     %fieldset.span-9
       %legend
       %table
@@ -43,7 +43,7 @@
           %td
             %label{:for=>"person"} Person
           %td     
-            %input#person.text{:type=>"text",:name=>"person",:value=>"Firstname Lastname"}
+            %input#person.text{:type=>"text",:name=>"report[person]",:value=>""}
           %td     
             %input{:type=>"submit", :value=>"+"}
         %tr.organization
@@ -81,6 +81,6 @@
           %td
             %input{ :type=>"submit", :value=>"+"}
       %h3
-        %a{:href=>"next"} Save and go to Next Report
+        %input{:type=>"submit", :value => "Save and go to Next Report"}
       %h5 
-        %a{:href=>"skip"} (Skip)
+        %a{:href=>"/reports/release"} (Skip)
