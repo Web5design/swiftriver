@@ -1,0 +1,19 @@
+  <hr id="space" />
+  <h3>Log in to Swift</h3>
+
+  <% form_tag session_path do -%>
+  <p><%= label_tag 'email' %><br />
+  <%= text_field_tag 'email', @email, :class => "text" %><br />
+
+  <%= label_tag 'password' %><br/>
+  <%= password_field_tag 'password', nil, :class => "text" %><br />
+
+  <%= label_tag 'remember_me', 'Remember me' %>
+  <%= check_box_tag 'remember_me', '1', @remember_me %><br />
+
+  <%= submit_tag 'Log in', :class => "button" %></p>
+  <% end -%>
+
+  <p>
+    Don't have an account? <%= link_to_remote "Sign up now", :url => signup_url %>.
+  </p>

@@ -4,6 +4,15 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
+    respond_to do |format|
+      format.html {}
+      format.js {
+        render :update do |page|
+          page["sidebar"].replace_html :partial => 'login'
+        end
+      }
+    end
+    
   end
 
   def create

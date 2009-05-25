@@ -24,6 +24,15 @@ class UsersController < ApplicationController
     generate_captcha()
     
     @user = User.new
+    respond_to do |format|
+      format.html {}
+      format.js {
+        render :update do |page|
+          page["sidebar"].replace_html :partial => 'sessions/signup'
+        end
+      }
+    end
+    
   end
  
   def create

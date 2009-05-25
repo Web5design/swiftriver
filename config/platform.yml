@@ -1,23 +1,23 @@
 development:
-    name: VoteReport.in
+    name: SwiftRiver
     url: http://localhost:3008
     iphone_url: http://localhost:3008
-    audio_url: http://calls.inaugurationreport.com
-    tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
-        
-test:
-    name: VoteReport.in
-    url: http://localhost:3008
-    iphone_url: http://localhost:3008
-    audio_url: http://calls.inaugurationreport.com
-    tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
+    audio_url: http://calls.swiftapp.com
+    tag: swift
+    tags: swift,swiftapp,earthquake,outbreak,flooding,crisis
     
+test:
+    name: SwiftRiver
+    url: http://localhost:3008
+    iphone_url: http://localhost:3008
+    audio_url: http://calls.swiftapp.com
+    tag: swift
+    tags: swift,swiftapp,earthquake,outbreak,flooding,crisis
+        
 production:
-    name: VoteReport.in
-    url: http://votereport.in
+    name: SwiftRiver
+    url: http://demo.swiftapp.org
     iphone_url: http://iphone.votereport.in
     audio_url: http://calls.votereport.in
-    tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
+    tag: swift
+    tags: swift,swiftapp,earthquake,outbreak,flooding,crisis
