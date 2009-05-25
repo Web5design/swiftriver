@@ -1,40 +1,58 @@
-%table{:id => "report_#{report.id}"}
-  %tbody
-    %tr
-      %td.image= image_tag(report.reporter.icon || "", :class => "profile")
-      %td.author
-        %span{ :class => "author vcard"}
-          =h report.reporter.name
-          %br
-          =h report.reporter.uniqueid
-          %br
-          - if report.location
-            in
-            %span{ :class => "adr" }= report.location.address if report.location
-          via 
-          =report.reporter.source_name
-      %td.text{ :colspan => 2 }
-        %p.xhr_errors{:id => "error_report_#{report.id}", :style => 'display: none;'}
-          = error_messages_for :report
-        - remote_form_for :report, :url => report_path(report), :html => {:method => :put} do |f|
-          %div
-            - if report.is_a?(AudioReport) and (report.source == 'TEL' or report.source == 'IPH')
-              Listen to this audio report:
-              = audio_link(report)
-              %br
-              %label Transcribe audio here:
-              = text_field_tag 'transcription', 'transcribe audio here', {:id => "report_#{report.id}_transcription", :onfocus => "$('report_#{report.id}_transcription').value = '';"}
-            - else
-              = report.body
-          %div
-            %label Wait
-            = f.text_field :tags, :size => 3
-            %label Tags
-            = text_field_with_auto_complete( :report, :tags, {:size => 32}, { :indicator => "report_#{report.id}_tag_s_spinner", :frequency => 0.4, :tokens => [' ',','] }, report.id)
+%div#sidebar_content
+  - remote_form_for :report, :url => report_path(report), :html => {:method => :put, :id => "main_form"} do |f|
+    %fieldset.span-9
+      %legend
+      %table
+        %tr.rating
+          %td
+            %label.importance Importance:
+          %td
+            %input{:type=>"radio", :name=>"importance"}
+            %img{:src=>"/stylesheets/blueprint/plugins/buttons/icons/tick.png"} Important
+            %br
+            %input{:type=>"radio", :name=>"importance"}
+            %img{:src=>"/stylesheets/blueprint/plugins/buttons/icons/cross.png"} Spam
+        %tr.mood
+          %td
+            %label Mood:
+          %td
+            %input{:type=>"checkbox", :name=>"good"}
+            %span.smiley :)
+            %input{:type=>"checkbox",:name=>"normal"}
+            %span.smiley :|
+            %input{:type=>"checkbox",:name=>"bad"}
+            %span.smiley :(
+        %tr.person
+          %td
+            %label{:for=>"person"} Person:
+          %td
+            = text_field_tag 'person', (report.reporter.nil?) ? '' : report.reporter.name, :size => 20, :class => "text", :id => "person"
+        %tr.organization
+          %td 
+            %label{:for=>"organization"} Organization:
+          %td    
+            %input.text#organization{:type=>"text", :name=>"organization",:value=>""}          
+        %tr.location
+          %td 
+            %label{:for=>"location"} Location:
+          %td 
+            = text_field_tag 'location', (report.location.nil?) ? '' : report.location.address, :size => 20, :class => "text"
+        %tr.category
+          %td
+            %label.category Category:
+          %td
+            %select
+              %option Category 1
+              %option Category 2
+              %option Category 3
+              %option Category 4
+        %tr.tags
+          %td
+            %label{:for=>"tags"} Tags:
+          %td
+            = text_field_with_auto_complete( :report, :tags, {:size => 32, :class => "text"}, { :indicator => "report_#{report.id}_tag_s_spinner", :frequency => 0.4, :tokens => [' ',','] }, report.id)
             = image_tag 'spinner.gif', :id => "report_#{report.id}_tag_s_spinner", :style => 'display:none;'
-          %div
-            %label Location
-            = text_field_tag 'location', (report.location.nil?) ? '' : report.location.address, :size => 40
-            = submit_tag 'Save!'
-            %em - or -
-            = link_to_remote 'Cancel', { :url => report_path(report), :method => :get }
+      %h3
+        = submit_tag 'Save!'
+      %h5 
+        = link_to_remote 'Cancel', { :url => report_path(report), :method => :get }

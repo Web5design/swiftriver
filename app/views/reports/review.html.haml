@@ -7,10 +7,16 @@
 = render :partial => 'reviewer_alert', :collection => current_user.unviewed_alerts
 
 %div#maincontent.span-10
-  =render :partial => "report_review", :locals => {:report => @reports.first}
+  %p.clear
+    = link_to_remote content_tag(:span,"Get More Reports"), |
+      { :url => assign_reports_path, :method => :post,  :after => "startReviewerClock();"}, :class => "button" |
+  #reports
+  <!-- =render :partial => "report_review", :locals => {:report => @reports.first} -->
 
 %div#sidebar.push-1.span-10.last.container
   %hr#space
+  = render :partial => "reviewer_sidebar"
+  <!-- 
   %h2 Add tags to this report:
   %form#main_form{:method=>"put",:action=>"/reports/#{@reports.first.id}"}
     %fieldset.span-9
@@ -83,4 +89,4 @@
       %h3
         %input{:type=>"submit", :value => "Save and go to Next Report"}
       %h5 
-        %a{:href=>"/reports/release"} (Skip)
+        %a{:href=>"/reports/release"} (Skip) -->

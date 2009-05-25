@@ -101,7 +101,8 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page["report_#{@report.id}"].replace :partial => 'edit', :locals => { :report => @report }
+          # page["report_#{@report.id}"].replace :partial => 'edit', :locals => { :report => @report }
+          page["sidebar_content"].replace :partial => 'edit', :locals => { :report => @report }
         end
       }
     end
@@ -112,7 +113,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     @report.location = Location.geocode(params[:location])
     @report.text += " trans: #{params[:transcription]}" if params[:transcription]
-    
+    params[:report][:tags] = Tag.parse_tags(params[:report][:tags])
     if @report.update_attributes(params[:report])
       respond_to do |format|
         format.html { review }

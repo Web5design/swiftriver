@@ -19,7 +19,7 @@ a, a:visited {
 	padding-left: 10px;
 	height: 670px;
   	overflow-x: none;
-	overflow-y: auto;
+/*  overflow-y: auto;*/
 }
 #syndication {
 /*    float: right;*/

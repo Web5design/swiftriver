@@ -34,7 +34,7 @@ class Report < ActiveRecord::Base
     unreviewed = 'reviewed_at IS NULL AND (reviewer_id IS NULL OR assigned_at < UTC_TIMESTAMP - INTERVAL 10 MINUTE)'
     options.include?(:conditions) ? options[:conditions][0] << " AND #{unreviewed}" : options[:conditions] = unreviewed
     
-    { :limit => 10, 
+    { :limit => 1, 
      :order => 'reports.created_at DESC' }.merge(options)
   }) do
     def assign(reviewer)
@@ -47,6 +47,14 @@ class Report < ActiveRecord::Base
   cattr_accessor :public_fields
   @@public_fields = [:id,:body,:score,:created_at,:updated_at]
 
+  alias_method :ar_tags=, :tags=
+  def tags=(tags)
+    tag_objects = tags.collect do |tag|
+      tag.is_a?(Tag) ? tag : Tag.find_or_create_by_description(tag)
+    end
+    self.ar_tags = tag_objects
+  end
+  
   def name
     self.reporter.name
   end
