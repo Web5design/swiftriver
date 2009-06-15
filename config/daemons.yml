@@ -12,5 +12,5 @@ status:
     poll_mozes: false
     poll_tweets: true
     poll_youtube: false
-    poll_feeds: true
+    poll_feeds: false
     retweet: false

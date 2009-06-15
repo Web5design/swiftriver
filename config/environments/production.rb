@@ -27,5 +27,8 @@ AUDIO_UPLOAD_PATH = "/home/inaugreport/files"
 GMAPS_API_KEY = case SERVER_URL
   when /votereport\.in/
     "ABQIAAAAYfI_xw3MwUbmAScWsa72VBSuFsnH5PDWXdyJdiGQQuj4PM3yfxSgAwoD6hakNi0aLgvp20ewE9F4WA"
+  when /swiftapp\.org/
+    "ABQIAAAAYfI_xw3MwUbmAScWsa72VBQbtq4ShYWai1gvBO_QYf5rpz7PcRTf7qPIM7pLLsaFK6cDMSR7IFVOWA"
   end
+  
   
