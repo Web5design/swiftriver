@@ -114,12 +114,13 @@ function updateJSON(response) {
         showMessage("Sorry - no reports with this filter.");
 
     if( (state != null || state != "") && state != "us" ) {
-    //  mapstraction.autoCenterAndZoom();
+        mapstraction.autoCenterAndZoom();
     }
     else {
       var myPoint = new LatLonPoint(32.787275,54.316406);
       mapstraction.setCenterAndZoom(myPoint, 6);      
     }
+    mapstraction.autoCenterAndZoom();
     
     last_updated = new Date().toISO8601String();
     jQuery("#last_updated").text(last_updated);    
