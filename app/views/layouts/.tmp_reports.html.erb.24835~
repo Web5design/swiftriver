@@ -1,0 +1,160 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <%= stylesheet_link_tag 'main','reports' %>
+  <%= yield :style %>
+  <%= yield :head %>
+  <title><%= APP_NAME %></title>
+	<%= javascript_include_tag 'prototype','effects','application' %>
+	<%= yield :javascript %>
+  <!-- <link rel="search" type="application/opensearchdescription+xml" title="#<%= APP_TAG %>" href="<%= SERVER_URL %>/opensearch.xml" /> -->
+	<%- [:atom, :kml].each do |format| -%>
+	<%#  auto_discovery_link_tag(format, {:controller => :reports, :action => :index, :format => format}, {:title => "##{APP_TAG} #{format} feed"}) %>
+	<%- end -%>
+    <script type='text/javascript'>
+      // Maker.maker_host =  'http://maker.geocommons.dynalias.com'
+      // Maker.finder_host = 'http://finder.geocommons.dynalias.com'
+      // Maker.core_host =   'http://geocommons.dynalias.com'      
+    </script>
+
+</head>
+<body>
+    <a href="/"><div id='header'>
+      <div class='header'>
+        <div id='logo'>
+          <%= APP_NAME %>
+        </div>
+      </div>
+    </div></a>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+    <div id='content'>
+      <div class='content'>
+        <div class='c_main a_index' id='page'>
+          <div class='page' style='height: 600px'>
+              <%= yield  %>
+            <div id='maker_map' style="display:none;">
+              <div class='loading' style="display:none"></div>
+            </div>
+          </div>
+        </div>
+        <div id='side'>
+          <div class='side'>
+            <div class='panel' id='panel_welcome'>
+              <label><a href="#" class="expand expand_welcome">About</a></label>
+              <div class='short'>
+                <p>SwiftRiver</p>
+                <a href="#" class="expand expand_welcome">more &raquo;</a>
+              </div>
+              <div class='long' style='display:none'>
+                <p>SwiftRiver</p>
+              </div>
+            </div>
+            <div class='panel' id='panel_explore'>
+              <label><a href="#" class="expand expand_explore">Explore</a></label>
+              <div class='short' style='display:none'>
+                <ul>
+                  <li id="list_control">
+                      <a class="load_view load_view_reports_reports" href="javascript:void(0)">
+                      <strong>List of reports</strong>
+                    </a>
+                  </li>
+                  <li id="maps_control">
+                      <a class="load_view load_view_reports_map view_state_us" href="javascript:void(0)">
+                        <strong>Map of reports</strong>
+                    </a>
+                  </li>
+                </ul>
+                <!-- <a href="#" class="expand expand_explore">more &raquo;</a> -->
+              </div>
+              <div class='long'>
+                <div class='longb'>
+                  <!-- Fixed maps and lists -->
+                  <ul>
+                    <li id="list_control">
+                      <a class="load_view load_view_reports_reports" href="javascript:void(0)">
+                        <strong>List of reports</strong>
+                      </a>
+                    </li>
+                    <li id="maps_control">
+                      <a class="load_view load_view_reports_map view_state_us" href="javascript:void(0)">
+                        <strong>Map of reports</strong>
+                      </a>
+                    </li>
+                  </ul>                  
+                  <div id='explore'>
+                    <!-- Dynamic maps -->
+                    <script type="text/javascript" charset="utf-8">
+                    </script>                                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='panel' id='panel_participate'>
+              <label><a href="#" class="expand expand_participate">Participate</a></label>
+              <div class='short'>
+                <p><img src="/images/i.iphone.gif" style="float:left;margin:0 5px 40px 0"/>Use a mobile app, the #iranelection tag in Twitter or see the <a href="http://npr.org/inaugurationreport" title="Inauguration Report: Dispatches From Listeners : NPR">NPR guide</a> on the various ways to contribute reports.</p>
+                <a href="#" class="expand expand_participate">more &raquo;</a>
+              </div>
+              <div class='long' style='display:none'>
+                <p><img src="/images/i.iphone.gif" style="float:left;margin:0 5px 40px 0"/>Use a mobile app, the #iranelection tag in Twitter or see the <a href="http://npr.org/inaugurationreport" title="Inauguration Report: Dispatches From Listeners : NPR">NPR guide</a> on the various ways to contribute reports.</p>
+                <p><br /><a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=301986752&mt=8" title="InaugurationReport iPhone store"><img src="/images/g.iphone.download.gif" /></a></p>
+                <p><br />To download the Android app, search for "IR09" in the Android Market.</p>
+              </div>
+            </div>
+
+            <div class='panel' id='panel_widgets'>
+              <label><a href="#" class="expand expand_search">Get Widgets</a></label>
+              <div class='short'>
+                <p>You can display Inauguration Report content on your site with our handy <a href="/widgets/">widgets</a>!
+                  No coding is required!
+                  </p>
+              </div>
+            </div>
+
+            <div class='panel' id='panel_search'>
+              <label><a href="#" class="expand expand_search">Search Content</a></label>
+              <div class='short'>
+                <p>You can <a href="/widgets/search/">search</a> for content, or filter by
+                    <a href="/?count=10&page=1&type=audio">audio</a>,
+                    <a href="/?count=10&page=1&type=video">video</a>,
+                    <a href="/?count=10&page=1&type=photo">photos</a>, or
+                    <a href="/?count=10&page=1&type=text">text</a>!
+                  </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='footer'>
+      <div class='footer fl_r'>
+        <div class='l'>
+			<ul id="syndication">
+				<li id="kml_link"><%= link_to image_tag("kml_icon.png", :alt => "KML")+"View in GoogleEarth", formatted_reports_url(:kml), :title => "Download the KML to view in GoogleEarth" %></li>
+				<li id="rss_link"><%= link_to image_tag("feed_icon.png", :alt => "RSS")+"Subscribe to RSS", formatted_reports_url(:atom), :title => "Subscribe to ##{APP_TAG} GeoRSS-Atom feed" %></li>
+			</ul>
+        </div>
+        <div class='r'>
+          Brought to you by
+          <a href="http://swiftapp.org">SwiftApp</a> | 
+          <a href="http://meedan.org">Meedan</a> |
+          <a href="http://geocommons.com">GeoCommons</a>
+        </div>
+      </div>
+    </div>
+    <script type='text/javascript'>
+      Accordion.initialize()
+    </script>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-7010869-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>    
+  </body>
+</html>

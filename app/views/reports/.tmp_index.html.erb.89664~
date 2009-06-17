@@ -1,0 +1,23 @@
+<%= render :partial => "reports/map" %>
+<div id="reports_reports" style="">
+<div id="reports" class="hfeed">
+  <% if !@live_feed -%>
+    <%= render :partial => @reports %>
+  <% else -%>
+    <%= render :file => 'public/cached_reports.html' %>
+  <% end -%>
+</div>
+
+<!-- either (a) paginate, or (b) auto-update -->
+<% if !@live_feed -%>
+	<div class="digg_pagination">
+  <%= will_paginate @reports %>
+ 	 </div>
+<% else -%>
+  <% content_for(:head) do %>
+    <%= javascript_include_tag("jquery.min.js") %>
+    <%= javascript_include_tag("report_autoupdate.js") %>
+    <div id="hdn_reports_container" style="display: none;"></div>
+  <% end -%>
+<% end -%>
+</div>
