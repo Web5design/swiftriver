@@ -22,6 +22,8 @@ class FeedPoller
         @feeds[feed_id]["reporter"] = NewsReporter.update_or_create(u_attrs)
       when /youtube/
         @feeds[feed_id]["reporter"] = YoutubeReporter.update_or_create(u_attrs)
+      when /twitter/
+        @feeds[feed_id]["reporter"] = TwitterReporter.update_or_create(u_attrs)
       end
     end
     @running = true
@@ -35,11 +37,12 @@ class FeedPoller
         feed = FeedParser.parse(feed_config["url"])
         puts "#{feed.title} = #{feed_config["url"]}"
         feed.entries.each do |e|
-            feed_config["reporter"].video_reports.create({ 'title' => e.title,
-                    'body' => e.content,
+	body = e.content.nil? ? "" : e.content.first["value"]
+            feed_config["reporter"].reports.create({ 'title' => e.title,
+                    'body' => body,
                     'uniqueid' => e.guid,
                     'created_at' => e.published,
-                    'link_url' => e.link })
+                    'link_url' => e.link }) 
                     puts e.title
         # rescue
         #   next

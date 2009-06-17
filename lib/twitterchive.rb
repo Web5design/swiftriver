@@ -27,10 +27,11 @@ class Twitterchive
           @fields[0..@fields.length-2].collect {|f| entry_h[f] = (entry/f).inner_text }
           entry_h["link"] = (entry/"link").first["href"]
           entry_h
-        end.split(",")
+        end
         next_url = @paginate ? (doc/"link[@rel=next]").first["href"] : nil
         sleep(0.2)
-      rescue
+      rescue Exception => e
+	puts "Error: #{e.message}"
         next_url = nil
       end
     end
@@ -46,7 +47,7 @@ class Twitterchive
 end
 
 if __FILE__ == $0
-  %w{ ostruct options }.each {|gem| require gem}
+  %w{ ostruct optparse }.each {|gem| require gem}
   # Parse the command line options
   options = OpenStruct.new
   opts = OptionParser.new
@@ -60,7 +61,7 @@ if __FILE__ == $0
   file = opts.parse(ARGV)
   
   unless options.tag.nil? || options.tag == ""
-    tag_archive = Twitterchive.new(options.tag)
+    tag_archive = Twitterchive.new(options.tag, :paginate => true)
     tag_archive.fetch
     tag_archive.csv(file.first)
   end

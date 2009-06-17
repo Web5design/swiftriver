@@ -1,17 +1,42 @@
 ---
-googlenewselection:
-  name: Google News Election
-  url: http://news.google.com/news?ned=in&hl=en&topic=p&output=rss
+googlenewsiran:
+  name: Google News of Iran Protests
+  url: http://news.google.com/news?um=1&ned=us&hl=en&q=iran+protests&as_qdr=h&as_drrb=q&output=rss
   type: news
-msnindiaelection:
-  name: MSN India Election
-  url: http://news.in.msn.com/rss/elections2009.aspx
+aljazeeramiddleeast:
+  name: AlJazeera Middle East News
+  url: http://english.aljazeera.net/Services/Rss/?PostingId=200861163157760548
   type: news
-ibnpolitics:
-  name: IBN Politics
-  url: http://ibnlive.in.com/xml/rss/ibnpolitics.xml
-  type: news
-googlevideoindia:
-  name: Google Video - India Election
-  url: http://video.google.com/videosearch?q=india+AND+election&hl=en&emb=0&st=week&client=firefox-a&output=rss
+googlevideoiran:
+  name: Google Video - Iran Election
+  url: http://video.google.com/videosearch?q=iran+AND+election&hl=en&emb=0&st=week&client=firefox-a&output=rss
   type: youtube
+twitter1:
+  name: Twitter Reporters 1
+  url: http://search.twitter.com/search.atom?q=from%3Ahuti_421+OR+from%3Apersiankiwi+OR+from%3AIranUltimatum+OR+from%3ABahram81+OR+from%3Aparhamdoustda+OR+from%3Atehranbureau
+  type: twitter
+twitter2:
+  name: Twitter Reporters 2
+  url: http://search.twitter.com/search.atom?q=from%3Ahamednz+OR+from%3AShahrzadmo+OR+from%3Asmileofcrash+OR+from%3Aalirezasha+OR+from%3AIranElection09
+  type: twitter
+twitter3:
+  name: Twitter Reporters 3
+  url: http://search.twitter.com/search.atom?q=from%3AIranRiggedElect+OR+from%3Amadyar+OR+from%3ATehranBureau+OR+from%3Airan09+OR+from%3AStopAhmadi
+  type: twitter
+twitter4:
+  name: Twitter Reporters 4
+  url: http://search.twitter.com/search.atom?q=from%3Asmileofcrash+OR+from%3Airanbaan+OR+from%3Aazarnoush+OR+from%3Aparhamdoustda+OR+from%3AMirriaam
+  type: twitter
+twitter5:
+  name: Twitter Reporters 5
+  url: http://search.twitter.com/search.atom?q=from%3Aabzole+OR+from%3A2hamed+OR+from%3Ajadi+OR+from%3Abahadorn+OR+from%3Asasan_j+OR+from%3AChange_for_Iran
+  type: twitter
+twitter6:
+  name: Twitter Reporters 6
+  url: http://search.twitter.com/search.atom?q=from%3Aknv+OR+from%3Ay_shar+OR+from%3AChange_for_Iran+OR+from%3Aavahedi+OR+from%3Aparastoo+OR+from%3Ajubinahdi
+  type: twitter
+twitter7:
+  name: Twitter Reporters 7
+  url: http://search.twitter.com/search.atom?q=from%3Amousavi1388+OR+from%3AMynumberone1988+OR+from%3Awillyong+OR+from%3Atehranelection
+  type: twitter
+

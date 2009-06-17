@@ -1,23 +1,7 @@
-development:
-    name: SwiftRiver
-    url: http://localhost:3008
-    iphone_url: http://localhost:3008
-    audio_url: http://calls.swiftapp.com
-    tag: swift
-    tags: swift,swiftapp,earthquake,outbreak,flooding,crisis
-    
-test:
-    name: SwiftRiver
-    url: http://localhost:3008
-    iphone_url: http://localhost:3008
-    audio_url: http://calls.swiftapp.com
-    tag: swift
-    tags: swift,swiftapp,earthquake,outbreak,flooding,crisis
-        
 production:
-    name: SwiftRiver
-    url: http://demo.swiftapp.org
+    name: SwiftRiver Iran Elections
+    url: http://iranelection.swiftapp.org
     iphone_url: http://iphone.votereport.in
     audio_url: http://calls.votereport.in
-    tag: swift
-    tags: swift,swiftapp,earthquake,outbreak,flooding,crisis
+    tag: iranelection
+    tags: iran09,iranelection,tehran,mousavi

@@ -8,7 +8,7 @@ log_output: true
 status:
     cache_reports: false
     poll_email: false
-    poll_flickr: false
+    poll_flickr: true
     poll_mozes: false
     poll_tweets: true
     poll_youtube: false

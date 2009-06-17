@@ -46,8 +46,8 @@ function initMapJS(url,map_filters){
         updateState(state);
     });
     // display the map centered on a latitude and longitude (Google zoom levels)
-    var myPoint = new LatLonPoint(38, -100);
-    mapstraction.setCenterAndZoom(myPoint, 4);
+    var myPoint = new LatLonPoint(32.787275,54.316406);
+    mapstraction.setCenterAndZoom(myPoint, 6);
     mapstraction.addControls({zoom: 'small'});
 
     fadeMap();
@@ -113,11 +113,12 @@ function updateJSON(response) {
     if(num_markers <= 0)
         showMessage("Sorry - no reports with this filter.");
 
-    if( (state != null || state != "") && state != "us" )
-      mapstraction.autoCenterAndZoom();
+    if( (state != null || state != "") && state != "us" ) {
+    //  mapstraction.autoCenterAndZoom();
+    }
     else {
-      var myPoint = new LatLonPoint(38, -100);
-      mapstraction.setCenterAndZoom(myPoint, 4);      
+      var myPoint = new LatLonPoint(32.787275,54.316406);
+      mapstraction.setCenterAndZoom(myPoint, 6);      
     }
     
     last_updated = new Date().toISO8601String();
