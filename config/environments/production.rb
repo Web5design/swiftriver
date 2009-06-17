@@ -30,4 +30,3 @@ GMAPS_API_KEY = case SERVER_URL
   when /swiftapp\.org/
     "ABQIAAAAYfI_xw3MwUbmAScWsa72VBQbtq4ShYWai1gvBO_QYf5rpz7PcRTf7qPIM7pLLsaFK6cDMSR7IFVOWA"
   end
-  

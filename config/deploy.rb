@@ -13,7 +13,9 @@ set :runner, nil
 # set :group, "wheel"
 ssh_options[:compression] = false
 
-set :application, "swift"
+# set :application, "swift"
+set(:application) { Capistrano::CLI.ui.ask("\n>> Application name: ") }
+
 set :keep_releases, 3
 
 role :app, "swiftapp.org"
