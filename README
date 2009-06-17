@@ -1,4 +1,14 @@
-Report platform
+Swift is a Free and Open Source toolset for crowdsourced situational awareness. The first use of Swift is as a complement to Ushahidi to monitor the Indian 2009 Elections, which you can see at Vote Report India.
+
+Swift builds on Twitter Vote Report, a platform for crowd-sourced election monitoring.  Twitter Vote Report made it possible for US voters to report voting irregularities in real-time using a standard set of tags for monitoring wait time at polling places.
+
+Swift hopes to expand this approach into a general purpose toolkit for crowdsouring the semantic structuring of data so that it can be reused in other applications and visualizations. The developers of Swift are particularly interested in crisis reporting (Ushahidi) and international media criticism (Meedan), but by providing a general purpose crowdsourcing tool we hope to create a tool reusable in many contexts.
+
+Swift engages self-interested teams of “citizen editors” who curate publicly available information about a crisis or any event or region as it happens.
+
+The goal of Swift is to provide an API (for programmers) and data set (for researchers) about an arbitrary set of RSS feeds. Swift is a database and a user interface; we are currently focusing on utilizing the open source freebase.com repository as a central store of our curated data.
+
+Homepage: http://swiftapp.org
 
 Development Wiki: http://inaug09dev.pbwiki.com/
 Google Group: http://groups.google.com/group/inaug09dev?lnk=gcimh
