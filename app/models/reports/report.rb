@@ -47,6 +47,14 @@ class Report < ActiveRecord::Base
   cattr_accessor :public_fields
   @@public_fields = [:id,:body,:score,:created_at,:updated_at]
 
+  def tag_list
+    self.tags.join(" ")
+  end
+  def tag_list=(tags)
+    self.tags = tags
+  end
+
+
   alias_method :ar_tags=, :tags=
   def tags=(tags)
     tag_objects = tags.collect do |tag|
@@ -114,7 +122,10 @@ class Report < ActiveRecord::Base
   # :state - two-letter code for state (e.g. NY, DC, PA)
   def self.find_with_filters(filters = {})
     # If we're searching a join table (filters, reporters) do a recursive search
-    if filters.include?(:state) && !filters[:state].blank?
+    if filters.include?(:country) && !filters[:country].blank?
+      filtered = Location.find_by_country_code(filters.delete(:country))
+      return filtered.reports.find_with_filters(filters) if filtered
+    elsif filters.include?(:state) && !filters[:state].blank?
       filtered = Filter.find_by_name(US_STATES[filters.delete(:state)])
       return filtered.reports.find_with_filters(filters) if filtered
     elsif filters.include?(:name) && !filters[:name].blank?
@@ -247,7 +258,8 @@ class Report < ActiveRecord::Base
       calais = Calais.process_document(:content => self.body, 
         :content_type => :text, :license_id => CALAIS_LICENSE)
       self.location = Location.geocode(calais.geographies.first.name, calais.geographies.first) unless calais.geographies.blank?
-    rescue
+    rescue Exception => e
+      logger.error "Error parsing report with OpenCalais: #{e.message}"
     end
     end
     if self.location_id && self.location.filter_list

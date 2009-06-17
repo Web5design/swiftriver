@@ -28,7 +28,7 @@
    }
    region_to_load = "<%= (@filters[:state] || 'DC').downcase %>";
    initializeMap();
-   updateMap("<%= reports_url(:format => 'json', :page => 1) %>", null, region_to_load);
+   updateMap("<%= cached_reports_url(:format => 'json', :page => 1) %>", null, region_to_load);
    
 </script>
 </div>

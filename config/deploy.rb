@@ -30,6 +30,9 @@ namespace :deploy do
   task :restart, :roles => :app do
     run "touch #{current_path}/tmp/restart.txt"
   end
+  task :change_permissions, :roles => :app do
+    run "chmod -R nobody:nobody #{release_path}/public"
+  end
 end
 
 namespace :daemons do
