@@ -6,7 +6,9 @@ class TwitterReporter < Reporter
   
   def source_name; "Twitter"; end
   def source; "Twitter"; end
-  def icon; profile_image_url; end
+  def icon
+    profile_image_url || "twitter_icon.png"
+  end
 
   def display_name; name; end
     

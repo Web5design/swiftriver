@@ -47,6 +47,14 @@ class Report < ActiveRecord::Base
   cattr_accessor :public_fields
   @@public_fields = [:id,:body,:score,:created_at,:updated_at]
 
+  def tag_list
+    self.tags.join(" ")
+  end
+  def tag_list=(tags)
+    self.tags = tags
+  end
+
+
   alias_method :ar_tags=, :tags=
   def tags=(tags)
     tag_objects = tags.collect do |tag|
