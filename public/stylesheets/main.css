@@ -98,11 +98,11 @@ h1 small {
 
 /* __________________________( Header ) ___ */
 #header {
-  background: #1e3e6d url(/images/header.png) no-repeat left;
+  background: #1e3e6d ;
   height: 50px;
 }
 #header #logo {
-  text-indent: -500em;
+/*  text-indent: -500em;*/
 }
 
 /* __________________________( Footer ) ___ */

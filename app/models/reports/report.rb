@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-	acts_as_solr
+#	acts_as_solr
 	
   validates_presence_of :reporter_id
   validates_uniqueness_of :uniqueid, :scope => :source, :allow_blank => true, :message => 'already processed'
@@ -228,12 +228,12 @@ class Report < ActiveRecord::Base
     elsif self.location_name
       self.location = Location.geocode(location_name)
     elsif self.body
-      LOCATION_PATTERNS.find { |p| self.body[p] }
+      LOCATION_PATTERNS.find { |p| self.body[p] } 
       self.location = Location.geocode($1) if $1
     end
     unless self.location
       locations = Location.find(:all).inject({}){|a,l| a[l.locality] = a}
-      localities = locations.collect{|name,l| body.scan(name).length > 0 ? l : nil}.compact
+      localities = locations.collect{|name,l| body.scan(name).length > 0 ? l : nil unless name.blank?}.compact
       self.location = localities.first
     end
     self.reporter.update_attributes(:location_id => self.location_id) if self.location
