@@ -114,11 +114,7 @@ function updateJSON(response) {
         showMessage("Sorry - no reports with this filter.");
 
     if( (state != null || state != "") && state != "us" ) {
-<<<<<<< HEAD:public/javascripts/mapping.js
-      // mapstraction.autoCenterAndZoom();
-=======
     //  mapstraction.autoCenterAndZoom();
->>>>>>> cd11f54b3d4259c4bda42a72ca7539febc7dffc7:public/javascripts/mapping.js
     }
     else {
       var myPoint = new LatLonPoint(32.787275,54.316406);
