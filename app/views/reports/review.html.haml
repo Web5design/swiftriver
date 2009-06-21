@@ -1,7 +1,5 @@
-- content_for :style do
-  = stylesheet_link_tag 'reviews'
+-# content_for :style do
 - content_for :javascript do
-  = javascript_include_tag :defaults
   = javascript_tag "var reviewer_timeout;"  # used to reset the reviewer's timeclock for the batch of reports
 
 = render :partial => 'reviewer_alert', :collection => current_user.unviewed_alerts
@@ -16,7 +14,8 @@
 %div#sidebar.push-1.span-10.last.container
   %hr#space
   = render :partial => "reviewer_sidebar"
-  <!-- 
+
+-#
   %h2 Add tags to this report:
   %form#main_form{:method=>"put",:action=>"/reports/#{@reports.first.id}"}
     %fieldset.span-9
@@ -90,4 +89,3 @@
         %input{:type=>"submit", :value => "Save and go to Next Report"}
       %h5 
         %a{:href=>"/reports/release"} (Skip) 
-  -->
