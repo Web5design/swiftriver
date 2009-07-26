@@ -1,33 +1,37 @@
 /* line 1, sass/main.sass */
+body {
+  font-family: helvetica; }
+
+/* line 4, sass/main.sass */
 label {
   font-weight: bold;
   padding: 0 5px; }
 
-/* line 5, sass/main.sass */
+/* line 8, sass/main.sass */
 table.report {
   margin-bottom: 1em;
   font-size: 90%;
   width: 800px; }
-  /* line 9, sass/main.sass */
+  /* line 12, sass/main.sass */
   table.report th {
     font-weight: bold; }
-  /* line 11, sass/main.sass */
+  /* line 14, sass/main.sass */
   table.report td {
     text-align: left;
     vertical-align: top; }
-  /* line 14, sass/main.sass */
+  /* line 17, sass/main.sass */
   table.report td.image {
     width: 75px; }
-  /* line 16, sass/main.sass */
+  /* line 19, sass/main.sass */
   table.report td.author {
     width: 100px; }
-  /* line 18, sass/main.sass */
+  /* line 21, sass/main.sass */
   table.report td.text {
     width: 500px; }
-  /* line 20, sass/main.sass */
+  /* line 23, sass/main.sass */
   table.report td.controls {
     text-align: right;
     width: 125px; }
-  /* line 24, sass/main.sass */
+  /* line 27, sass/main.sass */
   table.report .record-form {
     background-color: white; }
