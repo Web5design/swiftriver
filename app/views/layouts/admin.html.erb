@@ -1,12 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <%= stylesheet_link_tag 'reports' %>
-  <%= stylesheet_link_tag 'reviews' %>
-  <%= stylesheet_link_tag 'styles' %>
-  <%= stylesheet_link_tag 'blueprint/screen' %>
-  <%= stylesheet_link_tag 'blueprint/plugins/fancy-type/screen' %>
-  <%= stylesheet_link_tag 'blueprint/plugins/link-icons/screen' %>
-
+  <%= stylesheet_link_tag 'main' %>
+  
   <%= yield :style %>
   <%= yield :head %>
   <title>
@@ -16,54 +11,34 @@
   <%= javascript_include_tag 'application' %>
   <%= yield :javascript %>
 </head>
+
 <body>
   <div id="meta-header">
     <% if logged_in? -%>
     <h2><%= APP_NAME %> > <%= current_user.name %>'s sweeper page</h2>	
-    <h2 class="right"><%= link_to "Review reports", "/reports/review" %></h2>
-    <h2 class="right"><%= link_to "Log out", logout_path, { :title => "Log out" } %></h2>
-    <!-- <h2 class="right">1 reports reviewed with 3 tags used so far</h2>
-      <h2 class="right">1,321 reports need to be reviewed</h2>     -->
+    <h2><%= link_to "Review reports", "/reports/review" %></h2>
+    <h2><%= link_to "Log out", logout_path, { :title => "Log out" } %></h2>
+    <h2>1 reports reviewed / 3 tags used so far / 1,321 reports need to be reviewed</h2>    
     <% else -%>
     <h2><%= link_to_login_with_IP 'Not logged in', :style => 'border: none;' %></h2>
-    <h2 class="right"><%= link_to "Log in",  login_path,  { :title => "Log in" } %> /</h2>
-    <h2 class="right"><%= link_to "Sign up", signup_path, { :title => "Create an account" } %></h2>
+    <h2><%= link_to "Log in",  login_path,  { :title => "Log in" } %> /</h2>
+    <h2><%= link_to "Sign up", signup_path, { :title => "Create an account" } %></h2>
     <% end -%>
     
     <% if logged_in? && current_user.is_admin? %>
-    <h2 class="right"><%= link_to "Manage Reviewer Alerts", reviewer_alerts_path %></h2>
-    <h2 class="right"><%= link_to "Manage Users", users_path %></h2>
+    <h2><%= link_to "Manage Reviewer Alerts", reviewer_alerts_path %></h2>
+    <h2><%= link_to "Manage Users", users_path %></h2>
     <% end %>
   </div>
-  <span class="hide-notice"><a href="hide_notice"><%= flash[:notice] %></a></span>
 
-  <div class="container">  
-    <div id="header" class="span-24 notice">
-      <span class="hide-notice"><a href="hide_notice">close this</a></span>
-      <%- if logged_in? -%>
-      <h2 class="alt"><%= current_user.name %>, welcome to your dashboard. Here's how to get started:</h2>
-      <%- end -%>
-      <div class="push-1 span-6 colborder">
-        <h3>1. Quickly scan the article</h3>
-        <p>You can customize your own feeds if you want to on your <a href="#">preferences page</a>.</p>
-      </div>
-
-      <div class="span-7 ">
-        <h3>2. Tag people, places and organizations</h3>
-        <p>See if you can use one of the already-recognized entities.</p>
-      </div>
-
-      <div class="span-7 last push-1">
-        <h3>3. Give your feedback</h3>
-        <p>Let us know how you'd like to help</p>
-      </div>
-    </div>
+  <span class="notice"><%= flash[:notice] %></span>
 
       <%= yield %>
 
     <div class="footer">		
 
     </div>	
+    
   </div>
 </body>
 </html>
