@@ -5,3 +5,19 @@ production:
     audio_url: http://calls.votereport.in
     tag: iranelection
     tags: iran09,iranelection,tehran,mousavi
+
+development:
+    name: SwiftRiver Iran Elections
+    url: localhost:3000
+    iphone_url: http://iphone.votereport.in
+    audio_url: http://calls.votereport.in
+    tag: iranelection
+    tags: iran09,iranelection,tehran,mousavi
+
+test:
+    name: SwiftRiver Iran Elections
+    url: localhost:3000
+    iphone_url: http://iphone.votereport.in
+    audio_url: http://calls.votereport.in
+    tag: iranelection
+    tags: iran09,iranelection,tehran,mousavi    
