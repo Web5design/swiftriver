@@ -44,7 +44,9 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
   config.load_paths += Dir["#{RAILS_ROOT}/app/models/**"]
-
+  config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir|
+        File.directory?(lib = "#{dir}/lib") ? lib : dir
+  end
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
@@ -86,7 +88,7 @@ require "will_paginate"
 require "json"
 require "geo_ruby"
 require "haml"
-require "calais"
+# require "calais"
 CALAIS_LICENSE = "w7m26kvqdg37bdweph42n9vx"
 ENV['TZ'] = 'UTC'
 

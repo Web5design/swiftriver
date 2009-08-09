@@ -19,7 +19,7 @@ class Report < ActiveRecord::Base
   before_validation :set_source
   before_create :block_banned, :detect_location
   # check_uniqueid must be AFTER create because otherwise it doesn't have an ID
-  after_create :check_uniqueid, :assign_filters, :auto_review
+  after_create :check_uniqueid, :assign_tags, :assign_filters, :auto_review
   before_save { |record| record.location_id = record.reporter.location_id if record.location_id.nil? }
   
   named_scope :with_location, :conditions => 'reports.location_id IS NOT NULL'
@@ -48,7 +48,7 @@ class Report < ActiveRecord::Base
   @@public_fields = [:id,:body,:score,:created_at,:updated_at]
 
   def tag_list
-    self.tags.join(" ")
+    self.tags.map(&:to_s).join(" ")
   end
   def tag_list=(tags)
     self.tags = tags
@@ -231,26 +231,47 @@ class Report < ActiveRecord::Base
   
   # Detect and geocode any location information present in the report
   def detect_location
-    return true if self.location_id
-    if self.latlon
-      ll, self.location_accuracy = self.latlon.split(/:/)
-      ll.gsub!(/ /,'')
-      self.location = Location.geocode(ll)
-    elsif self.location_name
-      self.location = Location.geocode(location_name)
-    elsif self.body
-      LOCATION_PATTERNS.find { |p| self.body[p] } 
+    if self.body
+      LOCATION_PATTERNS.find { |p| self.body[p] }
       self.location = Location.geocode($1) if $1
     end
-    unless self.location
-      locations = Location.find(:all).inject({}){|a,l| a[l.locality] = a}
-      localities = locations.collect{|name,l| body.scan(name).length > 0 ? l : nil unless name.blank?}.compact
-      self.location = localities.first
-    end
-    self.reporter.update_attributes(:location_id => self.location_id) if self.location
-    self.location ? true : false
+    self.location = self.reporter.location if !self.location && self.reporter && self.reporter.location
+    ll, self.location_accuracy = self.latlon.split(/:/) if self.latlon
+    self.location = Location.geocode(ll, {"longitude" => ll.split(",")[1], "latitude" => ll.split(",")[0]}) unless ll.blank?
+    true
   end
     
+  # def detect_location
+  #   return true if self.location_id
+  #   if self.latlon
+  #     ll, self.location_accuracy = self.latlon.split(/:/)
+  #     ll.gsub!(/ /,'')
+  #     self.location = Location.geocode(ll)
+  #   elsif self.location_name
+  #     self.location = Location.geocode(location_name)
+  #   elsif self.body
+  #     LOCATION_PATTERNS.find { |p| self.body[p] } 
+  #     self.location = Location.geocode($1) if $1
+  #   end
+  #   unless self.location || self.body.blank?
+  #     locations = Location.find(:all).inject({}){|a,l| a[l.locality] = a}
+  #     localities = locations.collect{|name,l| body.scan(name).length > 0 ? l : nil unless name.blank?}.compact
+  #     self.location = localities.first
+  #   end
+  #   self.reporter.update_attributes(:location_id => self.location_id) if self.location
+  #   self.location ? true : false
+  # end
+
+  # What tags are associated with this report?
+  # Find them and store for easy reference later
+  def assign_tags
+    if self.body
+      self.tag_list = self.body.scan(/\s+\#\S+/).collect{|t| t.strip.gsub(/#/,'')}.join(' ')
+      save
+    end
+    true
+  end
+      
   # What location filters apply to this report?  US, MD, etc?
   def assign_filters
     unless self.body.blank?
@@ -262,7 +283,7 @@ class Report < ActiveRecord::Base
       logger.error "Error parsing report with OpenCalais: #{e.message}"
     end
     end
-    if self.location_id && self.location.filter_list
+    if self.location_id && self.location && self.location.filter_list
 			values = self.location.filter_list.split(',').map { |f| "(#{f},#{self.id})" }.join(',')
       self.connection.execute("INSERT DELAYED INTO report_filters (filter_id,report_id) VALUES #{values}") if !values.blank?
 		end

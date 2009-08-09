@@ -1,3 +1,4 @@
+<<<<<<< HEAD:app/views/reports/_reviewer_sidebar.html.erb
 <div id="sidebar_content"><table width="250">
   <tr>
     <td><h2 align="center">Reviewer Instructions</h2>
@@ -55,3 +56,48 @@
 </td>
   </tr>
 </table></div>
+=======
+<div id="sidebar_content">  
+  <span><h2>Reviewer Instructions</h2></span>
+  <hr />
+  <span>
+    <div>Your Mission</div><br />
+    Clean up a report and then click <q>Confirm</q>, or <q>Dismiss</q> a report that has no useful data.
+  </span>
+  <span>---</span>
+  <span><div>Confirmed Reports Must Include</div></span>
+  <p>1. A location <br />2. Any other valid tag</p>
+  <span>---</span>
+  <span> <div>Valid Tags</div></span>
+  <p> 
+    <div>#wait:xy</div> for wait time<br />
+    <q>(where xy = some number of minutes)</q><br />
+    <div>#machine</div> for broken voting machines<br />
+    <div>#reg</div> for registration issues<br />
+    <div>#EPXY</div> for urgent issues that need to go to the Election Protection team<br />
+    <q>(where XY = some two-character state code) </q>
+  </p>
+  <span>---</span>
+  <span><div>What to Do</div></span>
+  <p>If a report meets both requirements (location and at least one valid tag), simply click <q>Confirm</q> to add it to our usable data</p>
+  <p>If the report would meet the requirements, but was incorrectly formatted, click <q>Adjust</q> to clean it up (instructions below)</p>
+  <p>If the there is no way to make the report useful, click <q>Dismiss.</q>(Dismissed reports are not deleted, only ignored)</p>
+  <span>---</span>
+  <span><div>Special Case: Audio Reports</div></span>
+  <p>All audio reports will need to be translated into text.  Click the link to listen to the report, take notes, and then click "Adjust" and translate the report into valid text.</p>
+  <p>For example, the audio might say:</p>
+  <p> 
+    <q>Hey man, wow this line is like crazy long here in Philly.  I musta been out here three hours.</q> 
+    <br /><br />
+    You'd add "Philadelphia, PA" to the location field,  "180" to the wait field, and "bad" to the tags field
+  </p>
+  <span>---</span>
+  <span> <div>How to Adjust a Report</div></span>
+  <p> Once you click <q>Adjust</q> you'll open the editing menu. You'll see three fields: wait, tags, and location.</p>
+  <p>In the wait field, add the time in minutes (e.g. 3 hours = 180 minutes). Only add a time if the report gave a clear value.</p>
+  <p>In the location field, just type in the most specific location info that you can derive from the report - whether zipcode or city name.</p>
+  <p>In the tags field, feel free to add in any number of the valid tags listed above, as long as they are applicable.</p>
+  <p>Even if all you can do is add #bad or #good, that's useful!</p>
+  <p>Once you're finished, you can click <q>Preview</q> to check your work, <q>Confirm</q>to add it to our pool of live data, or <q>Cancel</q> to start over.</p>
+</div>
+>>>>>>> ac492602e3b89d525b4e24f2a973b77cc2e2e23e:app/views/reports/_reviewer_sidebar.html.erb
