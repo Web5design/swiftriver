@@ -1,0 +1,18 @@
+- content_for :style do
+  = stylesheet_link_tag 'reviews'
+- content_for :javascript do
+  = javascript_include_tag :defaults
+  = javascript_tag "var reviewer_timeout;"  # used to reset the reviewer's timeclock for the batch of reports
+
+= render :partial => 'reviewer_alert', :collection => current_user.unviewed_alerts
+
+%div#maincontent
+  
+    = link_to_remote content_tag(:span,"Get More Reports"), |
+      { :url => assign_reports_path, :method => :post,  :after => "startReviewerClock();"}, :class => "button" |
+  #reports
+  <!-- =render :partial => "report_review", :locals => {:report => @reports.first} -->
+
+<div id="#sidebar">
+  <%= render :partial => "reviewer_sidebar" %>
+</div>
