@@ -18,53 +18,114 @@ body
     +container
     +showgrid
   #header, #footer
-    +column(24)
   #sidebar
-    +column(24)
+
+  div.report_wrapper
+    :border 1px solid red
+    :clear both
+    +column(17)
+
+  div.markup_pane
+    :border 1px solid red
+    +column(6)
+  a
+    :text-align center
+  a.adjust
+    +column(5)
+    :background-color #f3f3f3
+    :color #888
+    :border 2px solid #c3c3c3
+  a.adjust:hover
+    :color #333
+    :border 2px solid #c3c3c3
+  a.dismiss
+    +column(2)
+    :border none
+    :color #c3c3c3
+  a.dismiss:hover
+    :color #333
+    :background-color #f3f3f3
+    :border 2px solid #c3c3c3
+  a.confirm
+    +column(1)
+    :float left
+    :border #c3c3c3 solid 2px
+    :color #c3c3c3
+  a.confirm:hover
+    :color #333
+    :background-color #f3f3f3
+    :border 2px solid #c3c3c3
+  a.chatter
+    +column(1)
+    :float left
+
+
+.screen_name
+  :border 1px solid red
+  :clear both
+  :display block
+  
+
+li.title
+  :border 1px solid red
+  +column(13, true)
+  
+li.source 
+  :text-align right
+  :margin-top 10px
+  +column(15, true)
+  :float right
 
 li.timestamp
-  +column(3)
   :font-size 20px
   :text-align right
+  +column(3)
+  
   a
     :text-decoration none
+    :color #c3c3c3
 
-div.report_wrapper
-  :border 1px solid #000
-  :float left
+span.entry-title
+  :font-size 20px
+  :float right
+  :text-align right
   
+
+.button
+  :clear both
+  :float left
+  :border 1px solid #f3f3f3
+  +left_rounded_corners
+  +right_rounded_corners
+  :padding 2.5px 6.5px
+  :text-decoration none
+  :margin 1.25px
+    
+      
 ul.report
-  :border #000 solid 1px
-  :text-align left
-  :border 1px solid #000
-  +column(12)
+  :float left
+  :border 1px solid #333
+  
   ul 
     li
       :clear both
-      :border 1px solid red
 
     li.screenname
-      :border 1px solid red
 
 div.pagination
   :clear both
-  :border 1px solid #000
   :font-size 20px
     
 #container
-  :border yellow solid 3px
 
 #sidebar
-  :border green solid 3px
   ul 
     li
       :float left
       :margin 10px
       
 #footer
-  :border blue solid 3px
   a
-    :border 1px solid #333
     :color #333
     :float left
     :padding 10px
@@ -79,18 +140,7 @@ a
 ul 
   :list-style-type none
   :text-align left
-
-
-div.markup_pane
-  :border 1px solid red
-  +column(3)
-  .button
-    :clear both
-    :float left
-    :border 1px solid #f3f3f3
-    +left_rounded_corners
-    +right_rounded_corners
-    :padding 2px
+    
 
 body.quotes
   .oa_navigation
@@ -230,40 +280,3 @@ body.quotes
           :padding-top 0px
           :font-size 700%
           :color = #333
-
-body.incoming
-
-  ul.attribution
-    :list-style-type none
-    :text-align right
-    :float right
-    :padding 20px 30px
-    li          
-      :float right
-      :font
-        :family Georgia
-        :style italic 
-        :size 20px
-    li.posted_by
-      :font-size 13px
-
-  .oa_navigation
-    :display none
-  
-  blockquote.description
-    :font-size 19px
-    :color 333
-    :width 700px    
-  ul
-    :list-style-type none
-    :margin 0 auto
-    :width 960px
-    
-  li div.oa_panel 
-    :float left
-    :padding 0
-    :border 1px solid #999
-    :margin-top 20px
-  
-  li.tagger, li.tags 
-    :display none

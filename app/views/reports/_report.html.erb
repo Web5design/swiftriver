@@ -1,4 +1,4 @@
-<div id="report_wrapper">
+<div class="report_wrapper">
   <ul id="<%= dom_id(report) %>" class="hentry report">
     <li class="timestamp">    
        <% if report.source=="Twitter" %>
@@ -12,19 +12,23 @@
          <span class="ago">ago</span>
    	  <% end %>
    	</li>
-	  <% if report.source=="Twitter" %>
-  	<%= link_to image_tag(report.reporter.icon || "", :class => "profile", :target=>"new"), report.reporter.profile || "" %>
-  	<% else %>
-    <img src="<%=report.reporter.icon%>" class="profile">
-  	<% end %>
-    <span class="vcard author" id="screen_name"><%=report.reporter.display_name%></span>: 
-    <span class="entry-title"><%=report.display_text%></span> 
-    <%= report.title+'<br/>' if report.title %>
 	  
     
-      <%= "<span class=\"adr\">#{report.location.address}</span>" if report.location %> 
+    <li class="title">
+      <span class="entry-title"><%=report.display_text%></span> 
+    <%= report.title if report.title %>
+    </li>
+	  
+    
+      <%= "<li class=\"adr\">#{report.location.address}</li>" if report.location %> 
         <li class="source">
+          <span class="vcard author screen_name"><%=report.reporter.display_name%></span>
           <span class="via">via</span> 
+          <% if report.source=="Twitter" %>
+      	    <%= link_to image_tag(report.reporter.icon || "", :class => "profile", :target=>"new"), report.reporter.profile || "" %>
+      	  <% else %>
+            <img src="<%=report.reporter.icon%>" class="profile">
+      	  <% end %>
           <span class="sourcename"><%=report.reporter.source_name%></span>
         </li>
 	
@@ -42,11 +46,11 @@
         <li><span class="audioreport">Listen to this audio report:</span><%= audio_link(report) %></li>
       <%- end %>  
     </ul>
-
-  <div class="markup_pane container">
-    <%= link_to_remote content_tag(:span, 'Adjust'), { :url => edit_report_path(report), :method => :get }, :class => "button" %>
-    <%= link_to_remote content_tag(:span, 'Dismiss'), { :url => dismiss_report_path(report), :method => :post }, :class => "button" %>
-    <%= link_to_remote content_tag(:span, 'Confirm'), { :url => confirm_report_path(report), :method => :post }, :class => "button" %>
-    <%= link_to_remote content_tag(:span, 'Mark as chatter'), { :with => "'report[is_chatter]=1'", :url => dismiss_report_path(report), :method => :post }, :class => "button"%>
-  </div>
+</div>
+  <div class="markup_pane">
+    <%= link_to_remote content_tag(:span, 'Adjust'), { :url => edit_report_path(report), :method => :get }, :class => "adjust button" %>
+    <%= link_to_remote content_tag(:span, 'Confirm'), { :url => confirm_report_path(report), :method => :post }, :class => "confirm button" %>
+    <%= link_to_remote content_tag(:span, 'Dismiss'), { :url => dismiss_report_path(report), :method => :post }, :class => "dismiss button" %>
+    <%= link_to_remote content_tag(:span, 'Mark as chatter'), { :with => "'report[is_chatter]=1'", :url => dismiss_report_path(report), :method => :post }, :class => "chatter button"%>
+  
 </div>
