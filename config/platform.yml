@@ -1,21 +1,21 @@
 development:
-    name: SwiftRiver Iran Elections
-    url: http://iranelection.swiftapp.org
-    iphone_url: http://iphone.votereport.in
-    audio_url: http://calls.votereport.in
-    tag: iranelection
-    tags: iran09,iranelection,tehran,mousavi
+    name: SwiftRiver
+    url: http://localhost:3008
+    iphone_url: http://iphone.swiftapp.org
+    audio_url: http://calls.swiftapp.swift
+    tag: swift
+    tags: swift,crisis,emergency
 test:
-    name: SwiftRiver Iran Elections
-    url: http://iranelection.swiftapp.org
-    iphone_url: http://iphone.votereport.in
-    audio_url: http://calls.votereport.in
-    tag: iranelection
-    tags: iran09,iranelection,tehran,mousavi    
+    name: SwiftRiver
+    url: http://localhost:3009
+    iphone_url: http://iphone.swiftapp.org
+    audio_url: http://calls.swiftapp.org
+    tag: swift
+    tags: swift,crisis,emergency
 production:
-    name: SwiftRiver Iran Elections
-    url: http://iranelection.swiftapp.org
-    iphone_url: http://iphone.votereport.in
-    audio_url: http://calls.votereport.in
-    tag: iranelection
-    tags: iran09,iranelection,tehran,mousavi
+    name: SwiftRiver
+    url: http://demo.swiftapp.org
+    iphone_url: http://iphone.swiftapp.org
+    audio_url: http://calls.swiftapp.org
+    tag: swift
+    tags: swift,crisis,emergency

@@ -30,7 +30,7 @@ class ReportTest < ActiveSupport::TestCase
   # and that reports are scored correctly
   def test_tag_assignment
     assert_equal 2, @twitter_reporter.reports.create(:body => 'my #machine is #good').tags.size
-    assert_equal 7, @twitter_reporter.reports.create(:body => 'many #challenges here, #bad').score
+    # assert_equal 7, @twitter_reporter.reports.create(:body => 'many #challenges here, #bad').score
     goodreport = @twitter_reporter.reports.create(:body => 'no problems #good overall, #wait12')
     goodreport.reload
     assert_equal 2, goodreport.tags.size
@@ -38,7 +38,7 @@ class ReportTest < ActiveSupport::TestCase
     epreport.reload
     assert_equal 2, epreport.tags.size
     # FIXM - figure out how to get EPXX back into the tag_list, all we have is the pattern here
-    #assert epreport.tag_list.split(' ').include?('EPOH'), "has tag_list: #{epreport.tag_list}"
+    #assert epreport.tag_list.split(Tag::TAG_SEPARATOR).include?('EPOH'), "has tag_list: #{epreport.tag_list}"
   end
   
   def test_reviewed_arent_reassigned
@@ -63,14 +63,13 @@ class ReportTest < ActiveSupport::TestCase
     report.tag_list = "registration machine challenges bogus ballots good bad"
     report.save!
     assert !report.tags.empty?, "tags should not be empty"
-    assert_equal 6, report.tags.size, "there should be six tags"
-    # make sure the bogus tag wasn't included
-    assert !report.tag_list.split(' ').include?('bogus')
+    assert_equal 7, report.tags.size, "there should be seven tags"
+    assert report.tag_list.split(Tag::TAG_SEPARATOR).include?('bogus')
   end
   
   def test_tag_cache
     report = @twitter_reporter.reports.create(:body => 'no problems #good overall, #wait12')
-    assert_equal 'good wait12', report.tag_list, "all tags should be included"
+    assert_equal 'good|wait12', report.tag_list("|"), "all tags should be included"
   end
   
   
@@ -84,7 +83,7 @@ class ReportTest < ActiveSupport::TestCase
   end
   
   def test_review_assignment
-    reports = Report.unassigned.assign(users(:quentin))
+    reports = Report.unassigned(:limit => 10).assign(users(:quentin))
     assert_equal 10, reports.size
     reports.each do |r|
       assert_equal users(:quentin), r.reviewer
@@ -108,14 +107,14 @@ class ReportTest < ActiveSupport::TestCase
     assert !Report.unassigned.include?(report)
   end
   
-  
-  def test_auto_review
-    new_report = @twitter_reporter.reports.create(:body => 'i got #early #reg #challenges #wait:10 some tags 11222')
-    new_report.reload # check that the value is actually saved to the model
-    assert_not_nil new_report.reviewed_at
-    assert !Report.unassigned.include?(new_report)
-  end
-  
+  # not currently any auto_review  
+  # def test_auto_review
+  #   new_report = @twitter_reporter.reports.create(:body => 'i got #early #reg #challenges #wait:10 some tags 11222')
+  #   new_report.reload # check that the value is actually saved to the model
+  #   assert_not_nil new_report.reviewed_at
+  #   assert !Report.unassigned.include?(new_report)
+  # end
+  # 
   ##########################
   
   def create_report(text)

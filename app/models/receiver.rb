@@ -7,7 +7,7 @@ class Receiver < ActionMailer::Base
                   'name' => email.friendly_from,
                   'profile_location' => source_ip }
     reporter = EmailReporter.update_or_create(user_info)
-    puts "email from #{reporter.name} at #{reporter.profile_location}"
+    # puts "email from #{reporter.name} at #{reporter.profile_location}"
     
     if email.parts.size.zero?
       reporter.text_reports.create(:title => email.subject, :body => email.body)

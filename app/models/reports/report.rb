@@ -34,8 +34,7 @@ class Report < ActiveRecord::Base
     unreviewed = 'reviewed_at IS NULL AND (reviewer_id IS NULL OR assigned_at < UTC_TIMESTAMP - INTERVAL 10 MINUTE)'
     options.include?(:conditions) ? options[:conditions][0] << " AND #{unreviewed}" : options[:conditions] = unreviewed
     
-    { :limit => 1, 
-     :order => 'reports.created_at DESC' }.merge(options)
+    { :order => 'reports.created_at DESC' }.merge(options)
   }) do
     def assign(reviewer)
       # FIXME: can't we do this more efficiently? a la p-code:
@@ -47,8 +46,8 @@ class Report < ActiveRecord::Base
   cattr_accessor :public_fields
   @@public_fields = [:id,:body,:score,:created_at,:updated_at]
 
-  def tag_list
-    self.tags.map(&:to_s).join(" ")
+  def tag_list(separator = Tag::TAG_SEPARATOR)
+    self.tags.map(&:to_s).join(separator)
   end
   def tag_list=(tags)
     self.tags = tags
@@ -57,6 +56,7 @@ class Report < ActiveRecord::Base
 
   alias_method :ar_tags=, :tags=
   def tags=(tags)
+    tags = tags.split(/ |#{Tag::TAG_SEPARATOR}/) if tags.is_a?(String)
     tag_objects = tags.collect do |tag|
       tag.is_a?(Tag) ? tag : Tag.find_or_create_by_description(tag)
     end
@@ -266,7 +266,7 @@ class Report < ActiveRecord::Base
   # Find them and store for easy reference later
   def assign_tags
     if self.body
-      self.tag_list = self.body.scan(/\s+\#\S+/).collect{|t| t.strip.gsub(/#/,'')}.join(' ')
+      self.tag_list = self.body.scan(/\s+\#\S+/).collect{|t| t.strip.gsub(/#/,'')}.join(Tag::TAG_SEPARATOR)
       save
     end
     true
