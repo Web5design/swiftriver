@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   
   # map.root :controller => "reports"
-  map.root :controller => "sessions", :action => "new"
+  map.root :controller => "pages"
 
   map.connect 'local/:filter', :controller => "reports", :action => "index"
 
