@@ -12,6 +12,7 @@ class Reporter < ActiveRecord::Base
   validates_uniqueness_of :uniqueid, :scope => :type, :allow_blank => false
   before_save { |record| record.home_location ||= record.location if record.location }
   
+  attr_accessor :latlon
   cattr_accessor :public_fields
   @@public_fields = [:name]
  

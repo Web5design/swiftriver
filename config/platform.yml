@@ -1,39 +1,21 @@
 development:
-<<<<<<< HEAD:config/platform.yml
-    name: VoteReport.in
+    name: SwiftRiver
     url: http://localhost:3008
-    iphone_url: http://localhost:3008
-    audio_url: http://calls.inaugurationreport.com
-    tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
-        
+    iphone_url: http://iphone.swiftapp.org
+    audio_url: http://calls.swiftapp.swift
+    tag: swift
+    tags: swift,crisis,emergency
 test:
-    name: VoteReport.in
-    url: http://localhost:3008
-    iphone_url: http://localhost:3008
-    audio_url: http://calls.inaugurationreport.com
-    tag: votereport
-    tags: votereport,indiavotes09,iv09,election09,india09,vote09,elections09,loksabha
-
-=======
-    name: SwiftRiver Iran Elections
-    url: http://iranelection.swiftapp.org
-    iphone_url: http://iphone.votereport.in
-    audio_url: http://calls.votereport.in
-    tag: iranelection
-    tags: iran09,iranelection,tehran,mousavi
-test:
-    name: SwiftRiver Iran Elections
-    url: http://iranelection.swiftapp.org
-    iphone_url: http://iphone.votereport.in
-    audio_url: http://calls.votereport.in
-    tag: iranelection
-    tags: iran09,iranelection,tehran,mousavi    
->>>>>>> ac492602e3b89d525b4e24f2a973b77cc2e2e23e:config/platform.yml
+    name: SwiftRiver
+    url: http://localhost:3009
+    iphone_url: http://iphone.swiftapp.org
+    audio_url: http://calls.swiftapp.org
+    tag: swift
+    tags: swift,crisis,emergency
 production:
-    name: SwiftRiver Iran Elections
-    url: http://iranelection.swiftapp.org
-    iphone_url: http://iphone.votereport.in
-    audio_url: http://calls.votereport.in
-    tag: iranelection
-    tags: iran09,iranelection,tehran,mousavi
+    name: SwiftRiver
+    url: http://demo.swiftapp.org
+    iphone_url: http://iphone.swiftapp.org
+    audio_url: http://calls.swiftapp.org
+    tag: swift
+    tags: swift,crisis,emergency
