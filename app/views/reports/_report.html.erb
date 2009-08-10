@@ -15,16 +15,13 @@
     via <%=report.reporter.source_name%><br/>
 	<%= report.media_link %>
   </span>
-
   <%- report.tags.each do |tag| %>
-    <li> <%= tag.description.to_s %></li>
+    <li class="tag"> <%= tag.description.to_s %></li>
   <%- end %>
   
   <%- unless report.location.nil? %>
-    <li><%= report.location.address %></li>
+    <li class="location tag"><%= report.location.address %></li>
   <%- end %>
-
-  reported <%=h time_ago_in_words(report.created_at) %> ago from <%= report.reporter.name %>
 
   <!-- (via <%= report.reporter.source_name %>) --> 
 

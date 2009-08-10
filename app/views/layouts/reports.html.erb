@@ -19,7 +19,6 @@
         // Maker.finder_host = 'http://finder.geocommons.dynalias.com'
         // Maker.core_host =   'http://geocommons.dynalias.com'      
       </script>
-
   </head>
   <body>
   
@@ -29,8 +28,8 @@
 
   <p style="notice"><%= flash[:notice] %></p>
 
-  <%= yield  %>
-
+  <div id="content"><%= yield  %></div>
+  <div id="sidebar">SIDSAKHJ ASKDJHA SKDJH ASKJDHAS DKJh </div>
     <div id='footer'>
 			<ul id="syndication">
 				<li id="kml_link"><%= link_to image_tag("kml_icon.png", :alt => "KML")+"View in GoogleEarth", formatted_reports_url(:kml), :title => "Download the KML to view in GoogleEarth" %></li>

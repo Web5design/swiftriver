@@ -1,32 +1,249 @@
-body
-  :font-family helvetica
+// This import applies a global reset to any page that imports this stylesheet.
+@import blueprint/reset.sass
+// To configure blueprint, edit the partials/base.sass file.
+@import partials/base.sass
+// Import all the default blueprint modules so that we can access their mixins.
+@import blueprint
+// To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
+// +blueprint
 
-label
-  :font-weight bold
-  :padding 0 5px
+//Recommended Blueprint configuration with scoping and semantic layout:
+body.bp
+  +blueprint-typography
+  +blueprint-utilities
+  +blueprint-debug
+  +blueprint-interaction
+form.bp
+  +blueprint-form
 
-table.report
-  :margin-bottom 1em
-  :font-size 90%
-  :width 800px
-  
-th
-  :font-weight bold
-td
+// To configure the grid, edit the partials/base.sass file.
+// Page layout can be done using mixins applied to your semantic classes and IDs:
+body.three-col
+  #container 
+    +container
+  #header, #footer
+    +column(!blueprint_grid_columns)
+  #sidebar
+    // One third of the grid columns, rounding down. With 24 cols, this is 8.
+    !sidebar_columns = floor(!blueprint_grid_columns / 12)
+    +column(!sidebar_columns)
+  #content
+    // Two thirds of the grid columns, rounding up.
+    // With 24 cols, this is 16.
+    !content_columns = ceil(2 * !blueprint_grid_columns / 3)
+    // true means it's the last column in the row
+    +column(!content_columns, true)
+
+
+// These are from compass
+@import blueprint/reset.sass
+@import blueprint
+@import ie.sass
+@import print.sass
+@import compass/utilities.sass
+@import compass/layout.sass
+
+= left_rounded_corners(!radius = 4px)
+  -webkit-border-radius-bottomleft= !radius
+  -webkit-border-radius-topleft= !radius
+  -moz-border-radius-bottomleft= !radius
+  -moz-border-radius-topleft= !radius
+
+= right_rounded_corners(!radius = 4px)
+  -webkit-border-radius-topright= !radius
+  -webkit-border-radius-bottomright= !radius
+  -moz-border-radius-topright= !radius
+  -moz-border-radius-bottomright= !radius
+
+// these container names are for use with the javascript slider implementation here: http://oscaralderete.com/
+
+!maincolor = #000
+//!flair = #FF0000
+
++sticky-footer(72px, "#root", "#root_footer", "#footer")
+
+div.report
+  :border #000 solid 1px
   :text-align left
-  :vertical-align top
-td.image
-  :width 75px
-td.author
-  :width 100px
-td.text
-  :width 500px
-td.controls
-  :text-align right
-  :width 125px
 
-.record-form
-  :background-color white
+#footer
+  :background #000
+
+a
+  +link-colors(#000, #000, #000, #000, #000)
+
+body.quotes
+  .oa_navigation
+    :width 100%
+    :padding 0
+    :margin 0
+    ul
+      :list-style-type none
+      :padding 0
+      :margin 0
+      :background #c3c3c3
+    li
+      :display inline
+        
+    a
+      +link-colors(#000, #000, #000, #000, #000) 
+      :border-left 1px solid #c3c3c3
+      :cursor pointer
+      :font bold 11px helvetica
+      :text-transform uppercase
+      :text-decoration none
+      :padding 40px 10px 0
+      :display block
+      :width 60px
+      :float left
+
+    a.oa_selected
+      :color #000
+      :cursor auto
+      :background #fff
+      :text-decoration none
+      :height 30px
+
+    div.oa_slider
+      :clear both
+      :width 960px
+      :margin 0 auto
+      div.oa_scroll
+        :width 960px
+        :height 700px 
+        :overflow hidden
+        :position relative
+      ul.oa_scrollPanels
+        :position relative
+        :float left
+        :width 100%
+        :list-style-type none
+        :padding 0
+        :margin 0
+        li ul.oa_scrollPanels li
+          :display inline
+        .oa_panel 
+          :float  left
+          :width 960px
+          :height 440px
+          :padding 0
+          :margin 0
+
+
+  div.oa_panel 
+    div.link
+      :padding 150px
+
+      ul.editor
+        :border-top= 5px "solid" !maincolor
+        :padding-top 20px
+        :clear both
+        :width 700px  
+
+        li
+          :float left
+          :display inline
+          :padding 0 3px
+
+        li.link_title
+          :clear both
+
+          p 
+            :width 800px
+
+        li.tags
+          :margin 10px 0
+          :float left
+          :clear both
+          :width 800px          
+
+          span.left
+            :font 10px "Lucida Sans Unicode", helvetica, arial, sans-serif
+            :text-transform uppercase
+            :padding 5px
+            :background #333
+            :color #888    
+            +left_rounded_corners
+
+          span.right
+            :font 10px "Lucida Sans Unicode", helvetica, arial, sans-serif
+            :text-transform uppercase
+            :padding 5px
+            :margin-right 10px
+            :background #000
+            :color #fff
+            +right_rounded_corners
+
+      ul.attribution
+        :list-style-type none
+        :text-align right
+        :float right
+        :padding 20px 30px
+
+        li          
+          :float right
+          :font
+            :family Georgia
+            :style italic 
+            :size 20px
+        li.posted_by
+          :font-size 13px
+
+      blockquote.description
+        :margin-bottom 100px
+        :font-size 19px
+        :color 333
+
+        span.bqstart 
+          :float left
+          :height 55px
+          :margin-left -70px
+          :margin-top -60px
+          :padding-top 45px
+          :margin-bottom -50px
+          :font-size 700%
+          :color = !maincolor
+        span.bqend
+          :float right
+          :margin-right -70px
+          :margin-top -40px
+          :padding-top 0px
+          :font-size 700%
+          :color = !maincolor  
+
+body.incoming
+
+  ul.attribution
+    :list-style-type none
+    :text-align right
+    :float right
+    :padding 20px 30px
+    li          
+      :float right
+      :font
+        :family Georgia
+        :style italic 
+        :size 20px
+    li.posted_by
+      :font-size 13px
+
+  .oa_navigation
+    :display none
   
+  blockquote.description
+    :font-size 19px
+    :color 333
+    :width 700px    
+  ul
+    :list-style-type none
+    :margin 0 auto
+    :width 960px
+    
+  li div.oa_panel 
+    :float left
+    :padding 0
+    :border 1px solid #999
+    :margin-top 20px
   
-  
+  li.tagger, li.tags 
+    :display none
