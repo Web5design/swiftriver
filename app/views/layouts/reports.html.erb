@@ -1,6 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <%= stylesheet_link_tag 'main' %>
+    <%= stylesheet_link_tag 'compiled/main.css', :media => 'screen, projection' %>
+    <%= stylesheet_link_tag 'compiled/partials/_base.css' %>
+    <%= stylesheet_link_tag 'compiled/print.css', :media => 'print' %>
+    <!-- [if lt IE 8] <%= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection' %> -->
+    
     <%= yield :style %>
     <%= yield :head %>
     <title><%= APP_NAME %></title>
