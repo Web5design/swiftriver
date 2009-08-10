@@ -1,11 +1,6 @@
-// This import applies a global reset to any page that imports this stylesheet.
-@import blueprint/reset.sass
-// To configure blueprint, edit the partials/base.sass file.
+
 @import partials/base.sass
 // Import all the default blueprint modules so that we can access their mixins.
-@import blueprint
-// To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
-// +blueprint
 
 //Recommended Blueprint configuration with scoping and semantic layout:
 body.bp
@@ -18,59 +13,84 @@ form.bp
 
 // To configure the grid, edit the partials/base.sass file.
 // Page layout can be done using mixins applied to your semantic classes and IDs:
-body.three-col
+body
   #container 
     +container
+    +showgrid
   #header, #footer
-    +column(!blueprint_grid_columns)
+    +column(24)
   #sidebar
-    // One third of the grid columns, rounding down. With 24 cols, this is 8.
-    !sidebar_columns = floor(!blueprint_grid_columns / 12)
-    +column(!sidebar_columns)
-  #content
-    // Two thirds of the grid columns, rounding up.
-    // With 24 cols, this is 16.
-    !content_columns = ceil(2 * !blueprint_grid_columns / 3)
-    // true means it's the last column in the row
-    +column(!content_columns, true)
+    +column(24)
 
+li.timestamp
+  +column(3)
+  :font-size 20px
+  :text-align right
+  a
+    :text-decoration none
 
-// These are from compass
-@import blueprint/reset.sass
-@import blueprint
-@import ie.sass
-@import print.sass
-@import compass/utilities.sass
-@import compass/layout.sass
-
-= left_rounded_corners(!radius = 4px)
-  -webkit-border-radius-bottomleft= !radius
-  -webkit-border-radius-topleft= !radius
-  -moz-border-radius-bottomleft= !radius
-  -moz-border-radius-topleft= !radius
-
-= right_rounded_corners(!radius = 4px)
-  -webkit-border-radius-topright= !radius
-  -webkit-border-radius-bottomright= !radius
-  -moz-border-radius-topright= !radius
-  -moz-border-radius-bottomright= !radius
-
-// these container names are for use with the javascript slider implementation here: http://oscaralderete.com/
-
-!maincolor = #000
-//!flair = #FF0000
-
-+sticky-footer(72px, "#root", "#root_footer", "#footer")
-
-div.report
+div.report_wrapper
+  :border 1px solid #000
+  :float left
+  
+ul.report
   :border #000 solid 1px
   :text-align left
+  :border 1px solid #000
+  +column(12)
+  ul 
+    li
+      :clear both
+      :border 1px solid red
 
+    li.screenname
+      :border 1px solid red
+
+div.pagination
+  :clear both
+  :border 1px solid #000
+  :font-size 20px
+    
+#container
+  :border yellow solid 3px
+
+#sidebar
+  :border green solid 3px
+  ul 
+    li
+      :float left
+      :margin 10px
+      
 #footer
-  :background #000
-
+  :border blue solid 3px
+  a
+    :border 1px solid #333
+    :color #333
+    :float left
+    :padding 10px
+    :display block
+    img 
+      :float left
+      :margin 0 20px 0 0
+        
 a
   +link-colors(#000, #000, #000, #000, #000)
+
+ul 
+  :list-style-type none
+  :text-align left
+
+
+div.markup_pane
+  :border 1px solid red
+  +column(3)
+  .button
+    :clear both
+    :float left
+    :border 1px solid #f3f3f3
+    +left_rounded_corners
+    +right_rounded_corners
+    :padding 2px
 
 body.quotes
   .oa_navigation
@@ -135,7 +155,7 @@ body.quotes
       :padding 150px
 
       ul.editor
-        :border-top= 5px "solid" !maincolor
+        :border-top= 5px "solid" #333
         :padding-top 20px
         :clear both
         :width 700px  
@@ -202,14 +222,14 @@ body.quotes
           :padding-top 45px
           :margin-bottom -50px
           :font-size 700%
-          :color = !maincolor
+          :color = #333
         span.bqend
           :float right
           :margin-right -70px
           :margin-top -40px
           :padding-top 0px
           :font-size 700%
-          :color = !maincolor  
+          :color = #333
 
 body.incoming
 

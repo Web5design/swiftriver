@@ -1,51 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <%= stylesheet_link_tag 'main' %>
-  <%# stylesheet_link_tag 'reports' %>
-  <%# stylesheet_link_tag 'reviews' %>
-  <%= stylesheet_link_tag 'styles2' %>
-  <%= stylesheet_link_tag 'blueprint/screen' %>
-  <%= stylesheet_link_tag 'blueprint/plugins/fancy-type/screen' %>
-  <%= stylesheet_link_tag 'blueprint/plugins/link-icons/screen' %>
+  <%= render :partial => 'layouts/head' %>
+  <body>
+  <div id="container">  
 
-  <%= yield :style %>
-  <%= yield :head %>
-  <title>
-    <%= APP_NAME %>
-  </title>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag 'application' %>
-  <%= yield :javascript %>
-</head>
+    <p style="notice"><%= flash[:notice] %></p>
 
-<body>
-  <div id="meta-header">
-    <% if logged_in? -%>
-    <h2><%= APP_NAME %> > <%= current_user.name %>'s sweeper page</h2>	
-    <h2 class="right"><%= link_to "Review reports", "/reports/review/next" %></h2>
-    <h2 class="right"><%= link_to "Log out", logout_path, { :title => "Log out" } %></h2>
-    <!-- <h2 class="right">1 reports reviewed with 3 tags used so far</h2>
-      <h2 class="right">1,321 reports need to be reviewed</h2>     -->
-    <% else -%>
-    <h2><%= link_to_login_with_IP 'Not logged in', :style => 'border: none;' %></h2>
-    <h2><%= link_to "Log in",  login_path,  { :title => "Log in" } %> /</h2>
-    <h2><%= link_to "Sign up", signup_path, { :title => "Create an account" } %></h2>
-    <% end -%>
-    
-    <% if logged_in? && current_user.is_admin? %>
-    <h2><%= link_to "Manage Reviewer Alerts", reviewer_alerts_path %></h2>
-    <h2><%= link_to "Manage Users", users_path %></h2>
-    <% end %>
-  </div>
-
-  <span class="notice"><%= flash[:notice] %></span>
-
-      <%= yield %>
-
-    <div class="footer">		
-
-    </div>	
-    
-  </div>
-</body>
+    <div id="content"><%= yield  %></div>
+    <div id="sidebar">
+        <div id="sidebar">
+          <%= render :partial => "layouts/navigation" %>
+        </div>
+    </div>
+    <div id='footer'>
+      <%= render :partial => "layouts/footer" %>
+    </div>
+  </body>
 </html>

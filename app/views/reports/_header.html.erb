@@ -1,0 +1,15 @@
+<div id="header">
+   <% if logged_in? -%>
+     <h2><%= APP_NAME %></h2>
+   <% else -%>	
+     <h2 class="right"><%= link_to "Latest reports from this instance", "/reports/review/next" %></h2>
+     <h2><%= link_to_login_with_IP 'Not logged in', :style => 'border: none;' %></h2>
+     <h2><%= link_to "Log in",  login_path,  { :title => "Log in" } %> /</h2>
+     <h2><%= link_to "Sign up", signup_path, { :title => "Create an account" } %></h2>
+   <% end -%>
+   
+   <% if logged_in? && current_user.is_admin? %>
+   <h2><%= link_to "Manage Reviewer Alerts", reviewer_alerts_path %></h2>
+   <h2><%= link_to "Manage Users", users_path %></h2>
+   <% end %>
+ </div>

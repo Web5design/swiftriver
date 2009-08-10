@@ -1,0 +1,20 @@
+<head>
+  <%= stylesheet_link_tag 'compiled/main.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'compiled/print.css', :media => 'print' %>
+  <!-- [if lt IE 8] <%= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection' %> -->
+  
+  <%= yield :style %>
+  <%= yield :head %>
+  <title><%= APP_NAME %></title>
+	<%= javascript_include_tag 'application' %>
+	<%= yield :javascript %>
+  <!-- <link rel="search" type="application/opensearchdescription+xml" title="#<%= APP_TAG %>" href="<%= SERVER_URL %>/opensearch.xml" /> -->
+	<%- [:atom, :kml].each do |format| -%>
+	<%#  auto_discovery_link_tag(format, {:controller => :reports, :action => :index, :format => format}, {:title => "##{APP_TAG} #{format} feed"}) %>
+	<%- end -%>
+    <script type='text/javascript'>
+      // Maker.maker_host =  'http://maker.geocommons.dynalias.com'
+      // Maker.finder_host = 'http://finder.geocommons.dynalias.com'
+      // Maker.core_host =   'http://geocommons.dynalias.com'      
+    </script>
+</head>

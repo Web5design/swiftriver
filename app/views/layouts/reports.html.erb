@@ -1,40 +1,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <%= stylesheet_link_tag 'compiled/main.css', :media => 'screen, projection' %>
-    <%= stylesheet_link_tag 'compiled/partials/_base.css' %>
-    <%= stylesheet_link_tag 'compiled/print.css', :media => 'print' %>
-    <!-- [if lt IE 8] <%= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection' %> -->
-    
-    <%= yield :style %>
-    <%= yield :head %>
-    <title><%= APP_NAME %></title>
-  	<%= javascript_include_tag 'application' %>
-  	<%= yield :javascript %>
-    <!-- <link rel="search" type="application/opensearchdescription+xml" title="#<%= APP_TAG %>" href="<%= SERVER_URL %>/opensearch.xml" /> -->
-  	<%- [:atom, :kml].each do |format| -%>
-  	<%#  auto_discovery_link_tag(format, {:controller => :reports, :action => :index, :format => format}, {:title => "##{APP_TAG} #{format} feed"}) %>
-  	<%- end -%>
-      <script type='text/javascript'>
-        // Maker.maker_host =  'http://maker.geocommons.dynalias.com'
-        // Maker.finder_host = 'http://finder.geocommons.dynalias.com'
-        // Maker.core_host =   'http://geocommons.dynalias.com'      
-      </script>
-  </head>
+  <%= render :partial => 'layouts/head' %>
   <body>
-  
-    <div id='header'>
-      <h2><%= APP_NAME %></h2>
-    </div>
+  <div id="container">  
+    <%= render :partial => 'reports/header' %>
 
-  <p style="notice"><%= flash[:notice] %></p>
+    <p style="notice"><%= flash[:notice] %></p>
 
-  <div id="content"><%= yield  %></div>
-  <div id="sidebar">SIDSAKHJ ASKDJHA SKDJH ASKJDHAS DKJh </div>
+    <div id="content"><%= yield  %></div>
+    <div id="sidebar">
+      <%= render :partial => "layouts/navigation" %>
+    </div>    
     <div id='footer'>
-			<ul id="syndication">
-				<li id="kml_link"><%= link_to image_tag("kml_icon.png", :alt => "KML")+"View in GoogleEarth", formatted_reports_url(:kml), :title => "Download the KML to view in GoogleEarth" %></li>
-				<li id="rss_link"><%= link_to image_tag("feed_icon.png", :alt => "RSS")+"Subscribe to RSS", formatted_reports_url(:atom), :title => "Subscribe to ##{APP_TAG} GeoRSS-Atom feed" %></li>
-			</ul>
-    </div>
+  			 <%= render :partial => "layouts/footer" %>
+      </div>
+    </div>  
   </body>
 </html>
