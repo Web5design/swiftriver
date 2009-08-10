@@ -31,9 +31,13 @@
       	  <% end %>
           <span class="sourcename"><%=report.reporter.source_name%></span>
         </li>
-	
-    	<%= report.media_link %>
-	
+
+    </ul>
+</div>
+  <div class="markup_pane">
+    <span class="tagger">      
+      <ul id="taglist"> 
+      
       <%- report.tags.each do |tag| %>
         <li class="tag"> <%= tag.description.to_s %></li>
       <%- end %>
@@ -43,13 +47,15 @@
       <%- end %>
 
       <%- if report.is_a?(AudioReport) %>
-        <li><span class="audioreport">Listen to this audio report:</span><%= audio_link(report) %></li>
-      <%- end %>  
-    </ul>
-</div>
-  <div class="markup_pane">
-    <%= link_to_remote content_tag(:span, 'Adjust'), { :url => edit_report_path(report), :method => :get }, :class => "adjust button" %>
-    <%= link_to_remote content_tag(:span, 'Confirm'), { :url => confirm_report_path(report), :method => :post }, :class => "confirm button" %>
+        <li class="audioreport tag">Listen to this audio report:<%= audio_link(report) %></li>
+      <%- end %>
+      </ul>
+      
+      <input class="tagger" /><input type="submit" value="Tag" />  
+    </span>
+    
+    <%#= link_to_remote content_tag(:span, 'Adjust'), { :url => edit_report_path(report), :method => :get }, :class => "adjust button" %>
+    <%= link_to_remote content_tag(:span, 'Promote'), { :url => confirm_report_path(report), :method => :post }, :class => "promote button" %>
     <%= link_to_remote content_tag(:span, 'Dismiss'), { :url => dismiss_report_path(report), :method => :post }, :class => "dismiss button" %>
     <%= link_to_remote content_tag(:span, 'Mark as chatter'), { :with => "'report[is_chatter]=1'", :url => dismiss_report_path(report), :method => :post }, :class => "chatter button"%>
   

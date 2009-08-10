@@ -14,72 +14,93 @@ form.bp
 // To configure the grid, edit the partials/base.sass file.
 // Page layout can be done using mixins applied to your semantic classes and IDs:
 body
+
   #container 
     +container
-    +showgrid
-  #header, #footer
-  #sidebar
+    
+  #header
+    +column(23)
+    :margin 40px 0
+    :text-align center
+    :background #fcfcfc
+    +right_rounded_corners
+    +left_rounded_corners
+    :border 1px solid #f3f3f3
+    img   
+      :margin 30px 0 0 0
 
   div.report_wrapper
-    :border 1px solid red
     :clear both
     +column(17)
+    :margin-top 20px
+
+  .instance_name
+    :font-weight 700
 
   div.markup_pane
-    :border 1px solid red
     +column(6)
-  a
-    :text-align center
-  a.adjust
-    +column(5)
-    :background-color #f3f3f3
-    :color #888
-    :border 2px solid #c3c3c3
-  a.adjust:hover
-    :color #333
-    :border 2px solid #c3c3c3
-  a.dismiss
-    +column(2)
-    :border none
-    :color #c3c3c3
-  a.dismiss:hover
-    :color #333
-    :background-color #f3f3f3
-    :border 2px solid #c3c3c3
-  a.confirm
-    +column(1)
-    :float left
-    :border #c3c3c3 solid 2px
-    :color #c3c3c3
-  a.confirm:hover
-    :color #333
-    :background-color #f3f3f3
-    :border 2px solid #c3c3c3
-  a.chatter
-    +column(1)
-    :float left
+    :margin-top 26px
+    a
+      :text-align center
+    a.adjust
+      +column(5)
+      :background-color #f3f3f3
+      :color #888
+      :border 2px solid #c3c3c3
+    a.adjust:hover
+      :background-color #4CFFAA
+      :color #333
+      :border 2px solid #26713E
+    a.dismiss
+      +column(2.5)
+      :border #c3c3c3 solid 2px
+      :color #c3c3c3
+      :clear none
+      :float left
+    a.dismiss:hover
+      :color #333
+      :background-color #f3f3f3
+      :border 2px solid #c3c3c3
+    a.promote
+      +column(2)
+      :float left
+      :border #c3c3c3 solid 2px
+      :color #c3c3c3
+    a.promote:hover
+      :color #333
+      :background-color #f3f3f3
+      :border 2px solid #c3c3c3
+    a.chatter
+      +column(5)
+      :float left
+      :text-align left
+      :color #c3c3c3
+    a.chatter:hover
+      :color #000
 
-
-.screen_name
-  :border 1px solid red
-  :clear both
-  :display block
-  
-
-li.title
-  :border 1px solid red
-  +column(13, true)
-  
 li.source 
+  +column(15, true)
   :text-align right
   :margin-top 10px
-  +column(15, true)
-  :float right
+
+li.title
+  +column(13, true)
+
+span.tagger
+  :float left
+  :margin-bottom 3px
+
+li.tag  
+  :background #AAFFFF
+  :float left
+  :padding 2px 5px
+  :text-transform uppercase
+  :margin 0 5px
 
 li.timestamp
   :font-size 20px
   :text-align right
-  +column(3)
+  +column(3, true)
   
   a
     :text-decoration none
@@ -103,44 +124,59 @@ span.entry-title
     
       
 ul.report
-  :float left
-  :border 1px solid #333
+  +column(16)
   
   ul 
     li
       :clear both
 
-    li.screenname
-
 div.pagination
   :clear both
   :font-size 20px
-    
-#container
 
-#sidebar
-  ul 
-    li
-      :float left
-      :margin 10px
+ul#nav
+  +column(9)
+  :margin 0px 30px
+  :float right
+  li
+    :float right
+    :margin 10px 0 0 0 
+    :padding 10px 10px 0 0
+    a
+      :color #c3c3c3
       
 #footer
+  :text-align center
+  :clear both
+  :margin 0 auto
+  +column(23)
+  
   a
-    :color #333
+    :color #c3c3c3
     :float left
-    :padding 10px
+    :padding 10px 10px
     :display block
-    img 
-      :float left
-      :margin 0 20px 0 0
+    :text-decoration none
+  a:hover
+    :color #333
+    :padding 10px 10px
+  img 
+    :float left
+    :margin 0 20px 0 0
         
-a
-  +link-colors(#000, #000, #000, #000, #000)
-
 ul 
   :list-style-type none
   :text-align left
-    
+
+ul#taglist
+  :margin 0
+  .tag
+    :margin 2px
+
+div.pagination
+  :text-align center
+  :border-top 1px solid #f3f3f3
+  :padding 30px 0
 
 body.quotes
   .oa_navigation

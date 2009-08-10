@@ -1,3 +1,11 @@
 
-	<%= link_to image_tag("kml_icon.png", :alt => "KML")+"View in GoogleEarth", formatted_reports_url(:kml), :title => "Download the KML to view in GoogleEarth" %>
-	<%= link_to image_tag("feed_icon.png", :alt => "RSS")+"Subscribe to RSS", formatted_reports_url(:atom), :title => "Subscribe to ##{APP_TAG} GeoRSS-Atom feed" %>
+  <%= link_to image_tag("kml_icon.png", :alt => "KML")+"View in GoogleEarth", formatted_reports_url(:kml), :title => "Download the KML to view in GoogleEarth" %>
+  <%= link_to image_tag("feed_icon.png", :alt => "RSS")+"Subscribe to RSS", formatted_reports_url(:atom), :title => "Subscribe to ##{APP_TAG} GeoRSS-Atom feed" %>
+  <%= link_to "Latest reports from this instance", "/reports/review/next" %>
+  <%= link_to_login_with_IP 'Not logged in', :style => 'border: none;' %>
+  <%= link_to "Log in",  login_path,  { :title => "Log in" } %>
+  <%= link_to "Sign up", signup_path, { :title => "Create an account" } %>
+  <% if logged_in? && current_user.is_admin? %>
+    <%= link_to "Manage Reviewer Alerts", reviewer_alerts_path %>
+    <%= link_to "Manage Users", users_path %>
+  <% end  %>
