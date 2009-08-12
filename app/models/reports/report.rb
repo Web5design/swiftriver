@@ -114,6 +114,11 @@ class Report < ActiveRecord::Base
     "#{self.url}" if self.respond_to?(:url)
   end
   
+  # Creates a historical count of reports
+  def self.aggregate_history
+    Report.find :all,   :select => "count(id), concat(hour(updated_at),':',minute(updated_at)) as time", :group => "hour(updated_at), minute(updated_at)" 
+  end
+  
   # Primary method to get reports with any of the following filters:
   # :q - generic search query term
   # :dtstart, :dtend - Time span begin and end to search

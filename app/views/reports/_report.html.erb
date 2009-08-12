@@ -1,3 +1,4 @@
+<div id="report_<%= report.id %>" class="report_div">
 <div class="report_wrapper">
   <ul id="<%= dom_id(report) %>" class="hentry report">
     <li class="timestamp">    
@@ -15,8 +16,8 @@
 	  
     
     <li class="title">
-      <span class="entry-title"><%=report.display_text%></span> 
-    <%= report.title if report.title %>
+      <span class="entry-title"><%= report.title || report.display_text %></span>
+      <span class="entry-text"><%= report.display_text unless report.title.blank? %></span> 
     </li>
 	  
     
@@ -46,12 +47,20 @@
         <li class="location tag"><%= report.location.address %></li>
       <%- end %>
 
+      <%- if report.is_a?(PhotoReport) %>
+        <li class="photoreport tag"><%= image_tag report.url %></li>
+      <%- end %>
+
       <%- if report.is_a?(AudioReport) %>
         <li class="audioreport tag">Listen to this audio report:<%= audio_link(report) %></li>
       <%- end %>
-      </ul>
       
-      <input class="tagger" /><input type="submit" value="Tag" />  
+     <li> 
+      <%- remote_form_for :report, :url => report_path(report), :html => {:method => :put} do -%>
+      <%= text_field :report, :tags, :class => "tagger" , :size => 20%>
+      <%= submit_tag 'Tag' %>
+      <%- end -%></li>
+</ul>      
     </span>
     
     <%#= link_to_remote content_tag(:span, 'Adjust'), { :url => edit_report_path(report), :method => :get }, :class => "adjust button" %>
@@ -59,4 +68,5 @@
     <%= link_to_remote content_tag(:span, 'Dismiss'), { :url => dismiss_report_path(report), :method => :post }, :class => "dismiss button" %>
     <%= link_to_remote content_tag(:span, 'Mark as chatter'), { :with => "'report[is_chatter]=1'", :url => dismiss_report_path(report), :method => :post }, :class => "chatter button"%>
   
+</div>
 </div>

@@ -76,7 +76,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page['reports'].fade
+          page['reports'].hide()
         end
       }
     end
@@ -87,7 +87,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     respond_to do |format|
       format.html {
-        render :partial => "report"
+        render :partial => "report", :locals => { :report => @report }
       }
       format.js {
         render :update do |page|
@@ -122,7 +122,7 @@ class ReportsController < ApplicationController
         format.xml { head :ok }
         format.js {
           render :update do |page|
-            page["report_#{@report.id}"].replace :partial => 'report_review', :locals => { :report => @report }
+            page["report_#{@report.id}"].replace :partial => 'report', :locals => { :report => @report }
             page["report_#{@report.id}"].visual_effect :highlight
           end
         }
@@ -149,7 +149,7 @@ class ReportsController < ApplicationController
         format.xml { head :ok }
         format.js {
           render :update do |page|
-            page["report_#{@report.id}"].fade( :duration => 0.3 )
+            page["report_#{@report.id}"].hide()
           end
         }
       end
@@ -176,7 +176,7 @@ class ReportsController < ApplicationController
       format.xml { head :ok }
       format.js {
         render :update do |page|
-          page["report_#{@report.id}"].fade( :duration => 0.3 )
+          page["report_#{@report.id}"].hide()
         end
       }
     end
