@@ -12,4 +12,10 @@ class Tag < ActiveRecord::Base
   def self.listing
     Tag.find(:all, :order => 'pattern DESC')
   end
+
+  def self.aggregate_history
+    Reporter.find :all,   :select => "count(id), concat(hour(created_at),':',minute(created_at)) as time", :group => "hour(created_at), minute(created_at)" 
+  end
+  
+    
 end

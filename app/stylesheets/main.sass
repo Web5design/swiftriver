@@ -1,0 +1,318 @@
+
+@import partials/base.sass
+// Import all the default blueprint modules so that we can access their mixins.
+
+//Recommended Blueprint configuration with scoping and semantic layout:
+body.bp
+  +blueprint-typography
+  +blueprint-utilities
+  +blueprint-debug
+  +blueprint-interaction
+form.bp
+  +blueprint-form
+
+// To configure the grid, edit the partials/base.sass file.
+// Page layout can be done using mixins applied to your semantic classes and IDs:
+body
+
+  #container 
+    +container
+    
+  #header
+    +column(23)
+    :margin 40px 0
+    :text-align center
+    :background #fcfcfc
+    +right_rounded_corners
+    +left_rounded_corners
+    :border 1px solid #f3f3f3
+    img   
+      :margin 30px 0 0 0
+
+  div.report_wrapper
+    :clear both
+    +column(17)
+    :margin-top 20px
+
+  .instance_name
+    :font-weight 700
+
+  div.markup_pane
+    +column(6)
+    :margin-top 26px
+    a
+      :text-align center
+    a.adjust
+      +column(5)
+      :background-color #f3f3f3
+      :color #888
+      :border 2px solid #c3c3c3
+    a.adjust:hover
+      :background-color #4CFFAA
+      :color #333
+      :border 2px solid #26713E
+    a.dismiss
+      +column(2.5)
+      :border #c3c3c3 solid 2px
+      :color #c3c3c3
+      :clear none
+      :float left
+    a.dismiss:hover
+      :color #333
+      :background-color #f3f3f3
+      :border 2px solid #c3c3c3
+    a.promote
+      +column(2)
+      :float left
+      :border #c3c3c3 solid 2px
+      :color #c3c3c3
+    a.promote:hover
+      :color #333
+      :background-color #f3f3f3
+      :border 2px solid #c3c3c3
+    a.chatter
+      +column(5)
+      :float left
+      :text-align left
+      :color #c3c3c3
+    a.chatter:hover
+      :color #000
+
+li.source 
+  +column(15, true)
+  :text-align right
+  :margin-top 10px
+
+li.title
+  +column(13, true)
+
+span.tagger
+  :float left
+  :margin-bottom 3px
+
+li.tag  
+  :background #AAFFFF
+  :float left
+  :padding 2px 5px
+  :text-transform uppercase
+  :margin 0 5px
+
+li.timestamp
+  :font-size 20px
+  :text-align right
+  +column(3, true)
+  
+  a
+    :text-decoration none
+    :color #c3c3c3
+
+span.entry-title
+  :font-size 20px
+  :float right
+  :text-align right
+  
+
+.button
+  :clear both
+  :float left
+  :border 1px solid #f3f3f3
+  +left_rounded_corners
+  +right_rounded_corners
+  :padding 2.5px 6.5px
+  :text-decoration none
+  :margin 1.25px
+    
+      
+ul.report
+  +column(16)
+  
+  ul 
+    li
+      :clear both
+
+div.pagination
+  :clear both
+  :font-size 20px
+
+ul#nav
+  +column(9)
+  :margin 0px 30px
+  :float right
+  li
+    :float right
+    :margin 10px 0 0 0 
+    :padding 10px 10px 0 0
+    a
+      :color #c3c3c3
+      
+#footer
+  :text-align center
+  :clear both
+  :margin 0 auto
+  +column(23)
+  
+  a
+    :color #c3c3c3
+    :float left
+    :padding 10px 10px
+    :display block
+    :text-decoration none
+  a:hover
+    :color #333
+    :padding 10px 10px
+  img 
+    :float left
+    :margin 0 20px 0 0
+        
+ul 
+  :list-style-type none
+  :text-align left
+
+ul#taglist
+  :margin 0
+  .tag
+    :margin 2px
+
+div.pagination
+  :text-align center
+  :border-top 1px solid #f3f3f3
+  :padding 30px 0
+
+body.quotes
+  .oa_navigation
+    :width 100%
+    :padding 0
+    :margin 0
+    ul
+      :list-style-type none
+      :padding 0
+      :margin 0
+      :background #c3c3c3
+    li
+      :display inline
+        
+    a
+      +link-colors(#000, #000, #000, #000, #000) 
+      :border-left 1px solid #c3c3c3
+      :cursor pointer
+      :font bold 11px helvetica
+      :text-transform uppercase
+      :text-decoration none
+      :padding 40px 10px 0
+      :display block
+      :width 60px
+      :float left
+
+    a.oa_selected
+      :color #000
+      :cursor auto
+      :background #fff
+      :text-decoration none
+      :height 30px
+
+    div.oa_slider
+      :clear both
+      :width 960px
+      :margin 0 auto
+      div.oa_scroll
+        :width 960px
+        :height 700px 
+        :overflow hidden
+        :position relative
+      ul.oa_scrollPanels
+        :position relative
+        :float left
+        :width 100%
+        :list-style-type none
+        :padding 0
+        :margin 0
+        li ul.oa_scrollPanels li
+          :display inline
+        .oa_panel 
+          :float  left
+          :width 960px
+          :height 440px
+          :padding 0
+          :margin 0
+
+
+  div.oa_panel 
+    div.link
+      :padding 150px
+
+      ul.editor
+        :border-top= 5px "solid" #333
+        :padding-top 20px
+        :clear both
+        :width 700px  
+
+        li
+          :float left
+          :display inline
+          :padding 0 3px
+
+        li.link_title
+          :clear both
+
+          p 
+            :width 800px
+
+        li.tags
+          :margin 10px 0
+          :float left
+          :clear both
+          :width 800px          
+
+          span.left
+            :font 10px "Lucida Sans Unicode", helvetica, arial, sans-serif
+            :text-transform uppercase
+            :padding 5px
+            :background #333
+            :color #888    
+            +left_rounded_corners
+
+          span.right
+            :font 10px "Lucida Sans Unicode", helvetica, arial, sans-serif
+            :text-transform uppercase
+            :padding 5px
+            :margin-right 10px
+            :background #000
+            :color #fff
+            +right_rounded_corners
+
+      ul.attribution
+        :list-style-type none
+        :text-align right
+        :float right
+        :padding 20px 30px
+
+        li          
+          :float right
+          :font
+            :family Georgia
+            :style italic 
+            :size 20px
+        li.posted_by
+          :font-size 13px
+
+      blockquote.description
+        :margin-bottom 100px
+        :font-size 19px
+        :color 333
+
+        span.bqstart 
+          :float left
+          :height 55px
+          :margin-left -70px
+          :margin-top -60px
+          :padding-top 45px
+          :margin-bottom -50px
+          :font-size 700%
+          :color = #333
+        span.bqend
+          :float right
+          :margin-right -70px
+          :margin-top -40px
+          :padding-top 0px
+          :font-size 700%
+          :color = #333

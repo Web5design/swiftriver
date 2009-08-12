@@ -6,12 +6,14 @@ class ReportsController < ApplicationController
   
   # GET /reports
   def index
+    require 'gchart'
     respond_to do |format|
       format.html do
         @live_feed = (params[:live] == "1")
         if !@live_feed 
           @reports = Report.find_with_filters(@filters)
         end
+        @hourly_usage = Report.hourly_usage
       end      
       format.kml do
         @reports = Report.with_location.find_with_filters(@filters)
@@ -74,7 +76,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.js {
         render :update do |page|
-          page['reports'].fade
+          page['reports'].hide()
         end
       }
     end
@@ -85,7 +87,7 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     respond_to do |format|
       format.html {
-        render :partial => "report"
+        render :partial => "report", :locals => { :report => @report }
       }
       format.js {
         render :update do |page|
@@ -120,7 +122,7 @@ class ReportsController < ApplicationController
         format.xml { head :ok }
         format.js {
           render :update do |page|
-            page["report_#{@report.id}"].replace :partial => 'report_review', :locals => { :report => @report }
+            page["report_#{@report.id}"].replace :partial => 'report', :locals => { :report => @report }
             page["report_#{@report.id}"].visual_effect :highlight
           end
         }
@@ -147,7 +149,7 @@ class ReportsController < ApplicationController
         format.xml { head :ok }
         format.js {
           render :update do |page|
-            page["report_#{@report.id}"].fade( :duration => 0.3 )
+            page["report_#{@report.id}"].hide()
           end
         }
       end
@@ -174,7 +176,7 @@ class ReportsController < ApplicationController
       format.xml { head :ok }
       format.js {
         render :update do |page|
-          page["report_#{@report.id}"].fade( :duration => 0.3 )
+          page["report_#{@report.id}"].hide()
         end
       }
     end
