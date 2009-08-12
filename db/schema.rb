@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20090109222000) do
     t.column "source", :string, :limit => 30
     t.column "uniqueid", :string, :limit => 30
     t.column "title", :string
-    t.column "body", :text, :limit => 2147483647
+    t.column "body", :text, :limit => 16777215
     t.column "score", :integer
     t.column "source_url", :string
     t.column "link_url", :string
