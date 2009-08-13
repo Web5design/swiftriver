@@ -1,7 +1,7 @@
 # Use Git for deployment - git-specific options
 # default_run_options[:pty] = true
 set :scm, "git"
-set :repository,  "git://github.com/gutelius/swiftriver.git"
+set :repository,  "git://github.com/ajturner/swiftriver.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1

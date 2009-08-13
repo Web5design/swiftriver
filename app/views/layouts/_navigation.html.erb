@@ -1,7 +1,9 @@
 <ul id="nav">
   <li><a href="#">Help</a></li>
-  <li><a href="/">Main Page</a></li>
-  <li><a href="">Your Account</a></li>
-  <li><%= link_to "Latest Reports", reports_path %></li>
   <li><a href="#">Feedback</a></li>
+  <li><a href="/">Main Page</a></li>
+  <li><%= link_to "Latest Reports", reports_path %></li>
+  <li>
+    <%= logged_in? ? (link_to "Your Account", "") : (link_to "Log In", login_path) %>
+  </li>
 </ul>

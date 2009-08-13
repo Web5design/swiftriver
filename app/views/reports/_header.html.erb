@@ -8,7 +8,7 @@
   This <span class="instance_name">Swift Instance</span> has <%= image_tag(Gchart.sparkline( :size => '80x25', :line_colors => '0077CC', :data => @report_history)) %> 423 reports and <%= image_tag(Gchart.sparkline(:size => '80x25', :line_colors => '0077CC', :data => @tag_history)) %> 43,845 tags.</li> 
 </h2>
 
- <h3>Your job is to tag these links with <span clas="person tag">People</span>, <span class="location tag">Places</span>, and <span class="organization tag">Organizations</span>.</h3>
+ <h3>Your job is to <%= logged_in? ? "tag these" : (link_to("tag these", login_path)) %> reports with <span clas="person tag">People</span>, <span class="location tag">Places</span>, and <span class="organization tag">Organizations</span>.</h3>
  
  </div>
  

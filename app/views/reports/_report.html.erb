@@ -54,19 +54,22 @@
       <%- if report.is_a?(AudioReport) %>
         <li class="audioreport tag">Listen to this audio report:<%= audio_link(report) %></li>
       <%- end %>
-      
-     <li> 
-      <%- remote_form_for :report, :url => report_path(report), :html => {:method => :put} do -%>
-      <%= text_field :report, :tags, :class => "tagger" , :size => 20%>
-      <%= submit_tag 'Tag' %>
-      <%- end -%></li>
+
+      <%- if logged_in? -%>
+       <li> 
+        <%- remote_form_for :report, :url => report_path(report), :html => {:method => :put} do -%>
+        <%= text_field :report, :tags, :class => "tagger" , :size => 20%>
+        <%= submit_tag 'Tag' %>
+        <%- end -%>
+      </li>
+      <%- end -%>
 </ul>      
     </span>
-    
+    <%- if logged_in? -%>
     <%#= link_to_remote content_tag(:span, 'Adjust'), { :url => edit_report_path(report), :method => :get }, :class => "adjust button" %>
     <%= link_to_remote content_tag(:span, 'Promote'), { :url => confirm_report_path(report), :method => :post }, :class => "promote button" %>
     <%= link_to_remote content_tag(:span, 'Dismiss'), { :url => dismiss_report_path(report), :method => :post }, :class => "dismiss button" %>
     <%= link_to_remote content_tag(:span, 'Mark as chatter'), { :with => "'report[is_chatter]=1'", :url => dismiss_report_path(report), :method => :post }, :class => "chatter button"%>
-  
+    <%- end -%>
 </div>
 </div>
