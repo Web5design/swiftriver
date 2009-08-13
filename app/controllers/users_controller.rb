@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       @user.activate! # auto-activate
       self.current_user = @user # login
       
-      redirect_back_or_default('/reports/review/next')
+      redirect_back_or_default('/reports')
       flash[:notice] = "Thanks for signing up!"
     else
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
