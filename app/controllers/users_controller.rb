@@ -120,12 +120,7 @@ class UsersController < ApplicationController
   
   
   private
-  
-  def generate_captcha
-    # generate simple captcha
-    session[:captcha_num_1] = @captcha_num_1 = rand(8).to_i
-    session[:captcha_num_2] = @captcha_num_2 = rand(8).to_i
-  end
+
   
   def validate_captcha
     if session[:captcha_num_1].blank? || session[:captcha_num_2].blank?

@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
+    generate_captcha()
+    
     respond_to do |format|
       format.html {}
       format.js {

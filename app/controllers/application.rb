@@ -23,7 +23,24 @@ class ApplicationController < ActionController::Base
   def admin_required
     (authorized? && current_user.is_admin?) || access_denied
   end
-    
+  
+  def generate_captcha
+    # generate simple captcha
+    session[:captcha_num_1] = @captcha_num_1 = rand(8).to_i
+    session[:captcha_num_2] = @captcha_num_2 = rand(8).to_i
+  end
+  
+  def validate_captcha
+    if session[:captcha_num_1].blank? || session[:captcha_num_2].blank?
+      return false
+    elsif params[:fakeasscaptcha].blank?
+      return false
+    else
+      params[:fakeasscaptcha].to_i == session[:captcha_num_1] + session[:captcha_num_2]
+    end
+  end
+  
+      
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
